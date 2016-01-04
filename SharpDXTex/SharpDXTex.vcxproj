@@ -101,6 +101,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>../DirectXTex</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -127,24 +128,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\libs\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\libs\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\libs\SharpDX.DXGI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="SharpDXTex.h" />
+    <ClInclude Include="Blob.h" />
+    <ClInclude Include="DXGIFormatUtilities.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageHelper.h" />
+    <ClInclude Include="ScratchImage.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="TexMetadata.h" />
+    <ClInclude Include="D3D11TextureHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="SharpDXTex.cpp" />
+    <ClCompile Include="Blob.cpp" />
+    <ClCompile Include="DXGIFormatUtilities.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageHelper.cpp" />
+    <ClCompile Include="ScratchImage.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="D3D11TextureHelper.cpp" />
+    <ClCompile Include="TexMetadata.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

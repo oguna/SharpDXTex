@@ -154,6 +154,7 @@ namespace MiniCubeTexure
             var depthView = new DepthStencilView(device, depthBuffer);
 
             // Load texture and create sampler
+            
             var texture = TextureHelper.FromFile(device, "TestGrid.png");
             var textureView = new ShaderResourceView(device, texture);
 
