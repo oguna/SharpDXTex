@@ -42,5 +42,6 @@ namespace SharpDXTex {
 		Dimension Dimension;
 	internal:
 		DirectX::TexMetadata getNative();
+		TexMetadata(const DirectX::TexMetadata& metadata);
 	};
 }

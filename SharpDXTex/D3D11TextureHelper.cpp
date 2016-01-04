@@ -15,15 +15,17 @@ bool SharpDXTex::D3D11TextureHelper::IsSuportedTexture(SharpDX::Direct3D11::Devi
 }
 
 void SharpDXTex::D3D11TextureHelper::CreateTexture(SharpDX::Direct3D11::Device^ device, array<Image^>^ srcImages, TexMetadata^ metadata,
-	[System::Runtime::InteropServices::Out] SharpDX::Direct3D11::Resource resource)
+	[System::Runtime::InteropServices::Out] SharpDX::Direct3D11::Resource^ resource)
 {
 	auto native_metadata = metadata->getNative();
 	auto nativeSrcImages = std::make_unique<DirectX::Image[]>(srcImages->Length.ToInt32);
 	for (auto i = 0; i < srcImages->Length; i++)
 	{
-		nativeSrcImages[i] = srcImages[i]->_native;
+		nativeSrcImages[i] = *srcImages[i]->_native;
 	}
-	DirectX::CreateTexture((ID3D11Device*)(void*)(device->NativePointer), nativeSrcImages, &native_metadata );
+	ID3D11Resource* pResource;
+	DirectX::CreateTexture((ID3D11Device*)(void*)(device->NativePointer), &nativeSrcImages[0], srcImages->Length.ToInt32, native_metadata, &pResource);
+	resource = gcnew SharpDX::Direct3D11::Resource((System::IntPtr)(void*)pResource);
 }
 
 void SharpDXTex::D3D11TextureHelper::CreateShaderResourceView(SharpDX::Direct3D11::Device^ device, array<Image^>^ srcImage, TexMetadata^ metadata,
@@ -33,7 +35,7 @@ void SharpDXTex::D3D11TextureHelper::CreateShaderResourceView(SharpDX::Direct3D1
 
 }
 
-void SharpDXTex::D3D11TextureHelper::CreateTextureEx(SharpDX::Direct3D11::Device^ device, array<Image^>^ srcImages, TexMetadata^ metadata,
+/*void SharpDXTex::D3D11TextureHelper::CreateTextureEx(SharpDX::Direct3D11::Device^ device, array<Image^>^ srcImages, TexMetadata^ metadata,
 	SharpDX::Direct3D11::ResourceUsage usage, SharpDX::Direct3D11::BindFlags bindFlags, SharpDX::Direct3D11::CpuAccessFlags cpuAccessFlags, SharpDX::Direct3D11::ResourceOptionFlags miscFlags, bool forceSRGB,
 	[System::Runtime::InteropServices::Out] SharpDX::Direct3D11::ShaderResourceView srv)
 {
@@ -53,4 +55,4 @@ void SharpDXTex::D3D11TextureHelper::CreateShaderResourceView(SharpDX::Direct3D1
 	[System::Runtime::InteropServices::Out] SharpDX::Direct3D11::ShaderResourceView srv);
 
 void SharpDXTex::D3D11TextureHelper::CaptureTexture(SharpDX::Direct3D11::Device^ device, SharpDX::Direct3D11::DeviceContext context, SharpDX::Direct3D11::Resource resource,
-	[System::Runtime::InteropServices::Out] ScratchImage^ result);
+	[System::Runtime::InteropServices::Out] ScratchImage^ result);*/

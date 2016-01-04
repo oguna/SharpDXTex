@@ -1,3 +1,4 @@
+#include "Stdafx.h"
 #include "Image.h"
 
 SharpDXTex::Image::Image(DirectX::Image* native) {

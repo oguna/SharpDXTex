@@ -1,3 +1,4 @@
+#include "Stdafx.h"
 #include "TexMetadata.h"
 
 DirectX::TexMetadata SharpDXTex::TexMetadata::getNative() {
@@ -12,4 +13,12 @@ DirectX::TexMetadata SharpDXTex::TexMetadata::getNative() {
 	native.dimension = (DirectX::TEX_DIMENSION)this->Dimension;
 	native.mipLevels = this->MipLevels;
 	return native;
+}
+
+SharpDXTex::TexMetadata::TexMetadata(const DirectX::TexMetadata& metadata)
+{
+	this->ArraySize = metadata.arraySize;
+	this->Height = metadata.height;
+	this->Width = metadata.width;
+	this->Depth = metadata.depth;
 }

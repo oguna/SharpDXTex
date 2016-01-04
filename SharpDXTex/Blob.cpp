@@ -1,29 +1,27 @@
-#include "Blob.h"
 #include "Stdafx.h"
+#include "Blob.h"
 
-using namespace SharpDXTex;
-
-Blob::Blob(DirectX::Blob* native)
+SharpDXTex::Blob::Blob(DirectX::Blob* native)
+	:_native(native)
 {
-	this->_native = native;
 }
-Blob::Blob()
+SharpDXTex::Blob::Blob()
+	:_native(new DirectX::Blob())
 {
-	this->_native = new DirectX::Blob();
 }
-void Blob::Initialize(int size)
+void SharpDXTex::Blob::Initialize(int size)
 {
-	this->_native->Initialize(size);
+	_native->Initialize(size);
 }
-void Blob::Release()
+void SharpDXTex::Blob::Release()
 {
-	this->_native->Release();
+	_native->Release();
 }
-System::IntPtr Blob::GetBufferPointer()
+System::IntPtr SharpDXTex::Blob::GetBufferPointer()
 {
-	return (System::IntPtr)this->_native->GetBufferPointer();
+	return (System::IntPtr)_native->GetBufferPointer();
 }
-int Blob::GetBufferSize()
+int SharpDXTex::Blob::GetBufferSize()
 {
-	return this->_native->GetBufferSize();
+	return _native->GetBufferSize();
 }
