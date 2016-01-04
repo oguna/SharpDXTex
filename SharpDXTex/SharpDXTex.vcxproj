@@ -104,7 +104,8 @@
       <AdditionalIncludeDirectories>../DirectXTex</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>DirectXTex.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../DirectXTex/Bin/Desktop_2015/x64/Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

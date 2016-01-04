@@ -154,7 +154,9 @@ namespace MiniCubeTexure
             var depthView = new DepthStencilView(device, depthBuffer);
 
             // Load texture and create sampler
-            
+            TexMetadata metadata;
+            ScratchImage image;
+            ImageHelper.LoadFromWICFile("TestGrid.png", 0, out metadata, out image);
             var texture = TextureHelper.FromFile(device, "TestGrid.png");
             var textureView = new ShaderResourceView(device, texture);
 
