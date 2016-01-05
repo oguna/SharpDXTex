@@ -72,14 +72,16 @@ namespace MiniCubeTexure
             var renderView = new RenderTargetView(device, backBuffer);
 
             // Compile Vertex and Pixel shaders
-            var vertexShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "VS", "vs_4_0");
+            //var vertexShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "VS", "vs_4_0");
+            var vertexShaderByteCode = ShaderBytecode.FromFile("MiniCubeTexture_vs.fxo");
             var vertexShader = new VertexShader(device, vertexShaderByteCode);
 
-            var pixelShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "PS", "ps_4_0");
+            //var pixelShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "PS", "ps_4_0");
+            var pixelShaderByteCode = ShaderBytecode.FromFile("MiniCubeTexture_ps.fxo");
             var pixelShader = new PixelShader(device, pixelShaderByteCode);
 
             // Layout from VertexShader input signature
-            var layout = new InputLayout(device, ShaderSignature.GetInputSignature(vertexShaderByteCode), new[]
+            var layout = new InputLayout(device, vertexShaderByteCode, new[]
                     {
                         new InputElement("POSITION", 0, Format.R32G32B32A32_Float, 0, 0),
                         new InputElement("TEXCOORD", 0, Format.R32G32_Float, 16, 0)
@@ -155,7 +157,7 @@ namespace MiniCubeTexure
 
             // Load texture and create sampler
             TexMetadata metadata;
-            var image = ImageUtil.LoadFromWICFile("TestGrid.png", WICFlags.None, out metadata);
+            var image = ImageUtil.LoadFromWICFile("GeneticaMortarlessBlocks.jpg", WICFlags.None, out metadata);
             var texture = TextureUtil.CreateTexture(device, image.GetImages(), image.GetMetadata());
             var textureView = new ShaderResourceView(device, texture);
 
