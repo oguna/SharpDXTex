@@ -2,6 +2,7 @@
 #include <DirectXTex.h>
 #include "Image.h"
 #include "TexMetadata.h"
+#include "DXGIFormatUtil.h"
 
 namespace SharpDXTex
 {
@@ -14,8 +15,8 @@ namespace SharpDXTex
 	public:
 		ScratchImage();
 
-		void Initialize(TexMetadata mdata, int flags) {
-			_native->Initialize(mdata.toNative(), flags);
+		void Initialize(TexMetadata mdata, ComputePitchFlags flags) {
+			_native->Initialize(mdata.toNative(), (DWORD)flags);
 		}
 
 		void Initialize(TexMetadata mdata) {

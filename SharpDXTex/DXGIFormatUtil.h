@@ -4,7 +4,7 @@
 namespace SharpDXTex
 {
 	[System::FlagsAttribute]
-	public enum class CompareFlags
+	public enum class ComputePitchFlags : System::UInt32
 	{
 		None = 0x0,
 		LegacyDWord = 0x1,
@@ -65,7 +65,7 @@ namespace SharpDXTex
 			return DirectX::BitsPerColor((DXGI_FORMAT)fmt);
 		}
 		static void ComputePitch(SharpDX::DXGI::Format fmt, int width, int height,
-			[System::Runtime::InteropServices::Out]int% rowPitch, [System::Runtime::InteropServices::Out]int% slicePitch, CompareFlags flags) {
+			[System::Runtime::InteropServices::Out]int% rowPitch, [System::Runtime::InteropServices::Out]int% slicePitch, ComputePitchFlags flags) {
 			size_t _rowPitch;
 			size_t _slicePitch;
 			DirectX::ComputePitch((DXGI_FORMAT)fmt, width, height, _rowPitch, _slicePitch, (DWORD)flags);
