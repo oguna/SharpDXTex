@@ -25,12 +25,16 @@ void SharpDXTex::D3D11TextureHelper::CreateTexture(SharpDX::Direct3D11::Device^ 
 	}
 	auto native_metadata = metadata.getNative();
 	auto nativeSrcImages = std::make_unique<DirectX::Image[]>(srcImages->Length);
+	auto nativeDevice = (ID3D11Device*)(void*)(device->NativePointer);
 	for (auto i = 0; i < srcImages->Length; i++)
 	{
-		srcImages[i].toNative(&nativeSrcImages[i]);
+		nativeSrcImages[i] = srcImages[i].toNative();
 	}
 	ID3D11Resource* pResource;
-	DirectX::CreateTexture((ID3D11Device*)(void*)(device->NativePointer), &nativeSrcImages[0], srcImages->Length, native_metadata, &pResource);
+	auto hr = DirectX::CreateTexture(nativeDevice, nativeSrcImages.get(), srcImages->Length, native_metadata, &pResource);
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
 	resource = gcnew SharpDX::Direct3D11::Resource((System::IntPtr)(void*)pResource);
 }
 

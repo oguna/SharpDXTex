@@ -17,8 +17,13 @@ DirectX::TexMetadata SharpDXTex::TexMetadata::getNative() {
 
 SharpDXTex::TexMetadata::TexMetadata(const DirectX::TexMetadata& metadata)
 {
-	this->ArraySize = metadata.arraySize;
-	this->Height = metadata.height;
 	this->Width = metadata.width;
+	this->Height = metadata.height;
 	this->Depth = metadata.depth;
+	this->ArraySize = metadata.arraySize;
+	this->MipLevels = metadata.mipLevels;
+	this->MiscFlags = metadata.miscFlags;
+	this->MiscFlags2 = metadata.miscFlags2;
+	this->Format = (SharpDX::DXGI::Format)metadata.format;
+	this->Dimension = (SharpDXTex::Dimension)metadata.dimension;
 }
