@@ -58,3 +58,17 @@ SharpDXTex::ScratchImage^ SharpDXTex::ImageUtil::FlipRotate(array<Image>^ srcIma
 	DirectX::FlipRotate(nativeSrcImages.get(), srcImages->Length, nativeMetadata, nativeFlags, *image->_native);
 	return image;
 }
+
+SharpDXTex::ScratchImage^ SharpDXTex::ImageUtil::LoadFromWICMemory(array<byte>^ source, WICFlags flags, [System::Runtime::InteropServices::Out] TexMetadata% metadata) {
+	pin_ptr<byte> p = &source[0];
+	DirectX::TexMetadata nativeMetadata;
+	auto image = gcnew ScratchImage();
+	DirectX::LoadFromWICMemory(p, source->Length, (DWORD)flags, &nativeMetadata, *image->_native);
+	metadata = TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::ScratchImage^ SharpDXTex::ImageUtil::LoadFromWICMemory(array<byte>^ source, WICFlags flags) {
+	pin_ptr<byte> p = &source[0];
+	auto image = gcnew ScratchImage();
+	DirectX::LoadFromWICMemory(p, source->Length, (DWORD)flags, nullptr, *image->_native);
+}
