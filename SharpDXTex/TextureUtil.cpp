@@ -3,6 +3,27 @@
 #include <vector>
 #include <memory>
 
+SharpDX::Direct3D11::Resource^ CreateTextureResource(ID3D11Resource* pResource) {
+	ID3D11Texture1D* pTexture1D;
+	auto hr1 = pResource->QueryInterface(__uuidof(ID3D11Texture1D), (void**)&pTexture1D);
+	if (SUCCEEDED(hr1)) {
+		return gcnew SharpDX::Direct3D11::Texture1D((System::IntPtr)pTexture1D);
+	}
+	ID3D11Texture2D* pTexture2D;
+	auto hr2 = pResource->QueryInterface(__uuidof(ID3D11Texture2D), (void**)&pTexture2D);
+	if (SUCCEEDED(hr2)) {
+		return gcnew SharpDX::Direct3D11::Texture2D((System::IntPtr)pTexture2D);
+	}
+	ID3D11Texture3D* pTexture3D;
+	auto hr3 = pResource->QueryInterface(__uuidof(ID3D11Texture3D), (void**)&pTexture3D);
+	if (SUCCEEDED(hr3)) {
+		return gcnew SharpDX::Direct3D11::Texture3D((System::IntPtr)pTexture3D);
+	}
+	if (pResource) {
+		pResource->Release();
+	}
+	return nullptr;
+}
 
 bool SharpDXTex::TextureUtil::IsSuportedTexture(SharpDX::Direct3D11::Device^ device, TexMetadata metadata)
 {
@@ -34,7 +55,7 @@ SharpDX::Direct3D11::Resource^ SharpDXTex::TextureUtil::CreateTexture(SharpDX::D
 	if (FAILED(hr)) {
 		throw(gcnew System::Exception());
 	}
-	return gcnew SharpDX::Direct3D11::Resource((System::IntPtr)(void*)pResource);
+	return CreateTextureResource(pResource);
 }
 
 SharpDX::Direct3D11::ShaderResourceView^ SharpDXTex::TextureUtil::CreateShaderResourceView(SharpDX::Direct3D11::Device^ device, array<Image>^ srcImages, TexMetadata metadata)
@@ -77,9 +98,12 @@ SharpDX::Direct3D11::Resource^ SharpDXTex::TextureUtil::CreateTexture(SharpDX::D
 	}
 	auto nativeMetadata = metadata.toNative();
 	ID3D11Resource* pResource;
-	DirectX::CreateTextureEx(nativeDevice, nativeSrcImages.get(), srcImages->Length, nativeMetadata,
+	auto hr = DirectX::CreateTextureEx(nativeDevice, nativeSrcImages.get(), srcImages->Length, nativeMetadata,
 		(D3D11_USAGE)usage, (uint32_t)bindFlags, (uint32_t)cpuAccessFlags, (uint32_t)miscFlags, forceSRGB, &pResource);
-	return gcnew SharpDX::Direct3D11::Resource((System::IntPtr)(void*)pResource);
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return CreateTextureResource(pResource);
 }
 
 SharpDX::Direct3D11::ShaderResourceView^ SharpDXTex::TextureUtil::CreateShaderResourceView(SharpDX::Direct3D11::Device^ device, array<Image>^ srcImages, TexMetadata metadata,
