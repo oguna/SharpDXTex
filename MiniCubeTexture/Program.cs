@@ -158,7 +158,7 @@ namespace MiniCubeTexure
             // Load texture and create sampler
             TexMetadata metadata;
             var image = ImageUtil.LoadFromWICFile("GeneticaMortarlessBlocks.jpg", WICFlags.None, out metadata);
-            var texture = TextureUtil.CreateTexture(device, image.GetImages(), image.GetMetadata());
+            var texture = TextureUtil.CreateTexture(device, image.Images, image.GetMetadata());
             var textureView = new ShaderResourceView(device, texture);
 
             var sampler = new SamplerState(device, new SamplerStateDescription()

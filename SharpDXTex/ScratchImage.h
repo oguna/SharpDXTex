@@ -10,45 +10,75 @@ namespace SharpDXTex
 	{
 	internal:
 		DirectX::ScratchImage* _native;
+
 	private:
 		~ScratchImage();
+
 	public:
 		ScratchImage();
 
-		void Initialize(TexMetadata mdata, ComputePitchFlags flags) {
-			_native->Initialize(mdata.toNative(), (DWORD)flags);
+		void Initialize(TexMetadata mdata, ComputePitchFlags flags);
+
+		void Initialize(TexMetadata mdata);
+
+		void Initialize1D(SharpDX::DXGI::Format fmt, int length, int arraySize, int mipLevels, ComputePitchFlags flags);
+		
+		void Initialize1D(SharpDX::DXGI::Format fmt, int length, int arraySize, int mipLevels);
+		
+		void Initialize2D(SharpDX::DXGI::Format fmt, int width, int height, int arraySize, int mipLevels, ComputePitchFlags flags);
+		
+		void Initialize2D(SharpDX::DXGI::Format fmt, int width, int height, int arraySize, int mipLevels);
+		
+		void Initialize3D(SharpDX::DXGI::Format fmt, int width, int height, int depth, int mipLevels, ComputePitchFlags flags);
+		
+		void Initialize3D(SharpDX::DXGI::Format fmt, int width, int height, int depth, int mipLevelss);
+		
+		void InitializeCube(SharpDX::DXGI::Format fmt, int width, int height, int nCubes, int mipLevels, ComputePitchFlags flags);
+		
+		void InitializeCube(SharpDX::DXGI::Format fmt, int width, int height, int nCubes, int mipLevels);
+		
+		void InitializeFromImage(Image srcImage, bool allow1D, ComputePitchFlags flags);
+		
+		void InitializeFromImage(Image srcImage, bool allow1D);
+		
+		void InitializeArrayFromImages(array<Image>^ images, bool allow1D, ComputePitchFlags flags);
+		
+		void InitializeArrayFromImages(array<Image>^ images, bool allow1D);
+		
+		void InitializeCubeFromImages(array<Image>^ srcImage, ComputePitchFlags flags);
+		
+		void InitializeCubeFromImages(array<Image>^ srcImage);
+		
+		void Initialize3DFromImages(array<Image>^ srcImage, int depth, ComputePitchFlags flags);
+		
+		void Initialize3DFromImages(array<Image>^ srcImage, int depth);
+
+		void Release();
+
+		bool OverrideFormat(SharpDX::DXGI::Format f);
+
+		TexMetadata GetMetadata();
+
+		Image GetImage(int mip, int item, int slice);
+
+		property array<Image>^ Images {
+			array<Image>^ get();
 		}
 
-		void Initialize(TexMetadata mdata) {
-			_native->Initialize(mdata.toNative());
+		property int ImageCount {
+			int get();
 		}
 
-		void InitializeFromImage(Image srcImage, bool allow2D, int flags);
-
-		void Release() {
-			_native->Release();
+		property System::IntPtr Pixels {
+			System::IntPtr get();
 		}
 
-		bool OverrideFormat(SharpDX::DXGI::Format f) {
-			return _native->OverrideFormat((DXGI_FORMAT)f);
+		property int PixelsSize {
+			int get();
 		}
 
-		TexMetadata GetMetadata() {
-			auto nativeMetadata = _native->GetMetadata();
-			return TexMetadata::TexMetadata(nativeMetadata);
-		}
-
-		Image GetImage(int mip, int item, int slice) {
-			auto nativeImage = _native->GetImage(mip, item, slice);
-			return Image::Image(*nativeImage);
-		}
-
-		array<Image>^ GetImages() {
-			array<Image>^ images = gcnew array<Image>(_native->GetImageCount());
-			for (int i = 0; i < _native->GetImageCount(); i++) {
-				images[i] = Image::Image(_native->GetImages()[i]);
-			}
-			return images;
+		property bool IsAlphaAllOpaque {
+			bool get();
 		}
 	};
 }
