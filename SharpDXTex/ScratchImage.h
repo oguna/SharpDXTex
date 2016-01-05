@@ -22,7 +22,7 @@ namespace SharpDXTex
 			_native->Initialize(mdata.toNative());
 		}
 
-		void InitializeFromImage(Image^ srcImage, bool allow2D, int flags);
+		void InitializeFromImage(Image srcImage, bool allow2D, int flags);
 
 		void Release() {
 			_native->Release();
