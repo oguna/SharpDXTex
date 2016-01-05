@@ -65,10 +65,12 @@ SharpDXTex::ScratchImage^ SharpDXTex::ImageUtil::LoadFromWICMemory(array<byte>^ 
 	auto image = gcnew ScratchImage();
 	DirectX::LoadFromWICMemory(p, source->Length, (DWORD)flags, &nativeMetadata, *image->_native);
 	metadata = TexMetadata::TexMetadata(nativeMetadata);
+	return image;
 }
 
 SharpDXTex::ScratchImage^ SharpDXTex::ImageUtil::LoadFromWICMemory(array<byte>^ source, WICFlags flags) {
 	pin_ptr<byte> p = &source[0];
 	auto image = gcnew ScratchImage();
 	DirectX::LoadFromWICMemory(p, source->Length, (DWORD)flags, nullptr, *image->_native);
+	return image;
 }
