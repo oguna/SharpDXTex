@@ -3,18 +3,34 @@
 
 namespace SharpDXTex
 {
-	public ref class Image
+	public value struct Image
 	{
-	internal:
-		DirectX::Image* _native;
 	public:
 		int Width;
 		int Height;
-		DXGI_FORMAT Format;
+		SharpDX::DXGI::Format Format;
 		int RowPitch;
 		int SlicePitch;
-		array<byte>^ Pixels;
+		System::IntPtr Pixels;
 	internal:
-		Image(DirectX::Image* native);
+		Image(const DirectX::Image& native);
+		void toNative(DirectX::Image* native) {
+			native->width = Width;
+			native->height = Height;
+			native->format = (DXGI_FORMAT)Format;
+			native->rowPitch = RowPitch;
+			native->slicePitch = SlicePitch;
+			native->pixels = (uint8_t*)(void*)Pixels;
+		}
+		DirectX::Image toNative() {
+			DirectX::Image image;
+			image.width = Width;
+			image.height = Height;
+			image.format = (DXGI_FORMAT)Format;
+			image.rowPitch = RowPitch;
+			image.slicePitch = SlicePitch;
+			image.pixels = (uint8_t*)(void*)Pixels;
+			return image;
+		}
 	};
 }

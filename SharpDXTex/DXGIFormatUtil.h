@@ -16,10 +16,10 @@ namespace SharpDXTex
 		BPP8 = 0x40000
 	};
 
-	public ref class DXGIFormatUtilities
+	public ref class DXGIFormatUtil
 	{
 	private:
-		DXGIFormatUtilities()
+		DXGIFormatUtil()
 		{
 		}
 

@@ -8,6 +8,7 @@ SharpDXTex::ScratchImage::ScratchImage()
 
 void SharpDXTex::ScratchImage::InitializeFromImage(Image^ srcImage, bool allow2D, int flags)
 {
-	auto pImage = srcImage->_native;
-	_native->InitializeFromImage(*pImage, allow2D, flags);
+	DirectX::Image nativeImage;
+	srcImage->toNative(&nativeImage);
+	_native->InitializeFromImage(nativeImage, allow2D, flags);
 }

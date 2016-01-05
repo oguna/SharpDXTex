@@ -157,7 +157,9 @@ namespace MiniCubeTexure
             TexMetadata metadata;
             var image = new ScratchImage();
             ImageHelper.LoadFromWICFile("TestGrid.png", 0, out metadata, image);
-            var texture = TextureHelper.FromFile(device, "TestGrid.png");
+            SharpDX.Direct3D11.Resource texture;
+            D3D11TextureHelper.CreateTexture(device, image.GetImages(), image.GetMetadata(),
+                out texture);
             var textureView = new ShaderResourceView(device, texture);
 
             var sampler = new SamplerState(device, new SamplerStateDescription()
