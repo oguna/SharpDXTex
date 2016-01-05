@@ -54,6 +54,8 @@ namespace SharpDXTex
 	public:
 		static ScratchImage^ LoadFromWICFile(System::String^ file, WICFlags flags, [System::Runtime::InteropServices::Out] TexMetadata% metadata);
 		static ScratchImage^ LoadFromWICFile(System::String^ file, WICFlags flags);
+
+
 		
 		static ScratchImage^ FlipRotate(Image srcImage, FlipRotateFlags flags);
 		static ScratchImage^ FlipRotate(array<Image>^ srcImages, TexMetadata metadata, FlipRotateFlags flags);

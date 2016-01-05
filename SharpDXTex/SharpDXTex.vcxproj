@@ -143,7 +143,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Blob.h" />
     <ClInclude Include="DXGIFormatUtil.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageUtil.h" />
@@ -154,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Blob.cpp" />
     <ClCompile Include="DXGIFormatUtil.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageUtil.cpp" />

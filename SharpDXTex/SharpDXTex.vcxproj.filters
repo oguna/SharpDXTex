@@ -21,9 +21,6 @@
     <ClInclude Include="ScratchImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TexMetadata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,9 +45,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScratchImage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Blob.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TexMetadata.cpp">
