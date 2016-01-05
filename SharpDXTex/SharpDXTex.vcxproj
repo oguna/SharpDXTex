@@ -99,12 +99,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;_WIN32_WINNT=0x0600;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>../DirectXTex</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>DirectXTex.lib</AdditionalDependencies>
+      <AdditionalDependencies>DirectXTex.lib;ole32.lib;windowscodecs.lib;uuid.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>../DirectXTex/Bin/Desktop_2015/x64/Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

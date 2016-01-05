@@ -8,6 +8,6 @@ namespace SharpDXTex
 	{
 	public:
 		static void LoadFromWICFile(System::String^ file, int flags,
-			[System::Runtime::InteropServices::Out] TexMetadata^ metadata, [System::Runtime::InteropServices::Out] ScratchImage^ image);
+			[System::Runtime::InteropServices::Out] TexMetadata% metadata, ScratchImage^ image);
 	};
 }
