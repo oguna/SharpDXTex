@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blob.h" />
-    <ClInclude Include="DXGIFormatUtilities.h" />
+    <ClInclude Include="DXGIFormatUtil.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageHelper.h" />
     <ClInclude Include="ScratchImage.h" />
@@ -155,7 +155,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Blob.cpp" />
-    <ClCompile Include="DXGIFormatUtilities.cpp" />
+    <ClCompile Include="DXGIFormatUtil.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageHelper.cpp" />
     <ClCompile Include="ScratchImage.cpp" />
