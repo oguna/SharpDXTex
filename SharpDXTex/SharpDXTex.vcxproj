@@ -146,18 +146,18 @@
     <ClInclude Include="Blob.h" />
     <ClInclude Include="DXGIFormatUtil.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="ImageHelper.h" />
+    <ClInclude Include="ImageUtil.h" />
     <ClInclude Include="ScratchImage.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="TexMetadata.h" />
-    <ClInclude Include="D3D11TextureHelper.h" />
+    <ClInclude Include="TextureUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Blob.cpp" />
     <ClCompile Include="DXGIFormatUtil.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="ImageHelper.cpp" />
+    <ClCompile Include="ImageUtil.cpp" />
     <ClCompile Include="ScratchImage.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -165,7 +165,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="D3D11TextureHelper.cpp" />
+    <ClCompile Include="TextureUtil.cpp" />
     <ClCompile Include="TexMetadata.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -12,3 +12,11 @@ void SharpDXTex::ScratchImage::InitializeFromImage(Image^ srcImage, bool allow2D
 	srcImage->toNative(&nativeImage);
 	_native->InitializeFromImage(nativeImage, allow2D, flags);
 }
+
+SharpDXTex::ScratchImage::~ScratchImage()
+{
+	if (_native != nullptr) {
+		delete(_native);
+		_native = nullptr;
+	}
+}

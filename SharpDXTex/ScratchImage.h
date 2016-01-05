@@ -9,15 +9,17 @@ namespace SharpDXTex
 	{
 	internal:
 		DirectX::ScratchImage* _native;
+	private:
+		~ScratchImage();
 	public:
 		ScratchImage();
 
 		void Initialize(TexMetadata mdata, int flags) {
-			_native->Initialize(mdata.getNative(), flags);
+			_native->Initialize(mdata.toNative(), flags);
 		}
 
 		void Initialize(TexMetadata mdata) {
-			_native->Initialize(mdata.getNative());
+			_native->Initialize(mdata.toNative());
 		}
 
 		void InitializeFromImage(Image^ srcImage, bool allow2D, int flags);

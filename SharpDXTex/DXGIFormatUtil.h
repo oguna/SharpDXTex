@@ -3,6 +3,7 @@
 
 namespace SharpDXTex
 {
+	[System::FlagsAttribute]
 	public enum class CompareFlags
 	{
 		None = 0x0,

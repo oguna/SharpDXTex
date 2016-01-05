@@ -11,7 +11,7 @@ void SharpDXTex::ImageHelper::LoadFromWICFile(System::String^ file, int flags, [
 		throw(gcnew System::ArgumentNullException("image"));
 	}
 	auto uniname = Marshal::StringToHGlobalUni(file);
-	auto nativeMetadata = metadata.getNative();
+	auto nativeMetadata = metadata.toNative();
 	auto nativeImage = image->_native;
 	auto hr = DirectX::LoadFromWICFile((LPCTSTR)uniname.ToPointer(), flags, &nativeMetadata, *nativeImage);
 	if (FAILED(hr)) {

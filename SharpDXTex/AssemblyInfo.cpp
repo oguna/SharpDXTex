@@ -14,9 +14,9 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTitleAttribute(L"SharpDXTex")];
 [assembly:AssemblyDescriptionAttribute(L"")];
 [assembly:AssemblyConfigurationAttribute(L"")];
-[assembly:AssemblyCompanyAttribute(L"Hewlett-Packard Company")];
+[assembly:AssemblyCompanyAttribute(L"")];
 [assembly:AssemblyProductAttribute(L"SharpDXTex")];
-[assembly:AssemblyCopyrightAttribute(L"Copyright (c) Hewlett-Packard Company 2016")];
+[assembly:AssemblyCopyrightAttribute(L"Copyright (c) oguna 2016")];
 [assembly:AssemblyTrademarkAttribute(L"")];
 [assembly:AssemblyCultureAttribute(L"")];
 
