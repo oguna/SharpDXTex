@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DXGIFormatUtil.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageUtil.h" />
     <ClInclude Include="ScratchImage.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="DXGIFormatUtil.cpp" />
+    <ClCompile Include="Enums.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageUtil.cpp" />
     <ClCompile Include="ScratchImage.cpp" />

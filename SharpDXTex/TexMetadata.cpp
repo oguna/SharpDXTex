@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "TexMetadata.h"
 
+using namespace System::Runtime::InteropServices;
+
 DirectX::TexMetadata SharpDXTex::TexMetadata::toNative()
 {
 	DirectX::TexMetadata native;
@@ -58,4 +60,88 @@ bool SharpDXTex::TexMetadata::IsVolumemap()
 {
 	auto native = SharpDXTex::TexMetadata(*this);
 	return native.IsVolumemap();
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromDDSMemory(array<byte>^ buffer, DDSFlags flags) {
+	if (buffer == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	pin_ptr<byte> p = &buffer[0];
+	DirectX::TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromDDSMemory(p, buffer->Length, (DWORD)flags, nativeMetadata);
+	p = nullptr;
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromDDSFile(System::String^ file, DDSFlags flags) {
+	if (file == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	auto nativeName = Marshal::StringToHGlobalUni(file);
+	DirectX:: TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromDDSFile((LPCTSTR)nativeName.ToPointer(), (DWORD)flags, nativeMetadata);
+	Marshal::FreeHGlobal(nativeName);
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromTGAMemory(array<byte>^ buffer) {
+	if (buffer == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	pin_ptr<byte> p = &buffer[0];
+	DirectX::TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromTGAMemory(p, buffer->Length, nativeMetadata);
+	p = nullptr;
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromTGAFile(System::String^ file) {
+	if (file == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	auto nativeName = Marshal::StringToHGlobalUni(file);
+	DirectX::TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromTGAFile((LPCTSTR)nativeName.ToPointer(), nativeMetadata);
+	Marshal::FreeHGlobal(nativeName);
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromWICMemory(array<byte>^ buffer, WICFlags flags) {
+	if (buffer == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	pin_ptr<byte> p = &buffer[0];
+	DirectX::TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromDDSMemory(p, buffer->Length, (DWORD)flags, nativeMetadata);
+	p = nullptr;
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
+}
+
+SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromWICFile(System::String^ file, WICFlags flags) {
+	if (file == nullptr) {
+		throw(gcnew System::ArgumentNullException("buffer"));
+	}
+	auto nativeName = Marshal::StringToHGlobalUni(file);
+	DirectX::TexMetadata nativeMetadata;
+	auto hr = DirectX::GetMetadataFromDDSFile((LPCTSTR)nativeName.ToPointer(), (DWORD)flags, nativeMetadata);
+	Marshal::FreeHGlobal(nativeName);
+	if (FAILED(hr)) {
+		throw(gcnew System::Exception());
+	}
+	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "TexMetadata.h"
 #include "Image.h"
 #include "ScratchImage.h"
@@ -9,8 +10,6 @@ namespace SharpDXTex
 	{
 	private:
 		TextureUtil() {};
-		void operator =(const TextureUtil^ src) {};
-		TextureUtil(const TextureUtil^ src) {};
 	public:
 		static bool IsSuportedTexture(SharpDX::Direct3D11::Device^ device, TexMetadata metadata);
 

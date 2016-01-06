@@ -1,4 +1,5 @@
 #pragma once
+
 #include <DirectXTex.h>
 #include "Image.h"
 #include "TexMetadata.h"

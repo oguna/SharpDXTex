@@ -1,5 +1,7 @@
 #pragma once
+
 #include <DirectXTex.h>
+#include "Enums.h"
 
 namespace SharpDXTex {
 	public enum class Dimension : System::UInt32
@@ -34,6 +36,9 @@ namespace SharpDXTex {
 
 	public value struct TexMetadata
 	{
+	internal:
+		DirectX::TexMetadata toNative();
+		TexMetadata(const DirectX::TexMetadata& metadata);
 	public:
 		int Width;
 		int Height;
@@ -50,8 +55,12 @@ namespace SharpDXTex {
 		bool IsPMAlpha();
 		void SetAlphaMode(AlphaMode mode);
 		bool IsVolumemap();
-	internal:
-		DirectX::TexMetadata toNative();
-		TexMetadata(const DirectX::TexMetadata& metadata);
+		
+		static SharpDXTex::TexMetadata FromDDSMemory(array<byte>^ buffer, DDSFlags flags);
+		static SharpDXTex::TexMetadata FromDDSFile(System::String^ file, DDSFlags flags);
+		static SharpDXTex::TexMetadata FromTGAMemory(array<byte>^ buffer);
+		static SharpDXTex::TexMetadata FromTGAFile(System::String^ file);
+		static SharpDXTex::TexMetadata FromWICMemory(array<byte>^ buffer, WICFlags flags);
+		static SharpDXTex::TexMetadata FromWICFile(System::String^ file, WICFlags flags);
 	};
 }
