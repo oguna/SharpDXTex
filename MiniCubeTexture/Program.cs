@@ -19,9 +19,9 @@
 // THE SOFTWARE.
 using System;
 using System.Diagnostics;
+using System.IO;
 
 using SharpDX;
-using SharpDX.D3DCompiler;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
@@ -72,12 +72,10 @@ namespace MiniCubeTexure
             var renderView = new RenderTargetView(device, backBuffer);
 
             // Compile Vertex and Pixel shaders
-            //var vertexShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "VS", "vs_4_0");
-            var vertexShaderByteCode = ShaderBytecode.FromFile("MiniCubeTexture_vs.fxo");
+            var vertexShaderByteCode = File.ReadAllBytes("MiniCubeTexture_vs.fxo");
             var vertexShader = new VertexShader(device, vertexShaderByteCode);
 
-            //var pixelShaderByteCode = ShaderBytecode.CompileFromFile("MiniCubeTexture.fx", "PS", "ps_4_0");
-            var pixelShaderByteCode = ShaderBytecode.FromFile("MiniCubeTexture_ps.fxo");
+            var pixelShaderByteCode = File.ReadAllBytes("MiniCubeTexture_ps.fxo");
             var pixelShader = new PixelShader(device, pixelShaderByteCode);
 
             // Layout from VertexShader input signature
@@ -219,9 +217,7 @@ namespace MiniCubeTexure
             });
 
             // Release all resources
-            vertexShaderByteCode.Dispose();
             vertexShader.Dispose();
-            pixelShaderByteCode.Dispose();
             pixelShader.Dispose();
             vertices.Dispose();
             layout.Dispose();
