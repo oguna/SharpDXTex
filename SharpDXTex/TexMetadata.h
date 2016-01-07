@@ -11,14 +11,14 @@ namespace SharpDXTex {
 		Texture3D = 4
 	};
 
-	[System::FlagsAttribute]
+	[System::Flags]
 	public enum class MiscFlag : System::UInt32
 	{
 		None = 0x0,
 		TexureCube = 0x4l
 	};
 
-	[System::FlagsAttribute]
+	[System::Flags]
 	public enum class MiscFlag2 : System::UInt32
 	{
 		None = 0x0,

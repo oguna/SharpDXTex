@@ -4,7 +4,7 @@
 
 namespace SharpDXTex
 {
-	[System::FlagsAttribute]
+	[System::Flags]
 	public enum class ComputePitchFlags : System::UInt32
 	{
 		None = 0x0,
