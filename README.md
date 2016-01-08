@@ -6,6 +6,8 @@
 In SharpDX3.0, D3DX libraries, Texture.LoadFromFile or Texture.LoadFromStream, were removed.
 If you want to use taht functions, you can use this library alternatively.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/bqrmws8lowx7gv5k/branch/master?svg=true)](https://ci.appveyor.com/project/oguna/sharpdxtex/branch/master)
+
 ## DirectXTex version
 
 tag : `nov2015`
