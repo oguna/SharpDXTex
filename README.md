@@ -19,6 +19,12 @@ var texture = TextureUtil.CreateTexture(device, image.GetImages(), image.GetMeta
 var textureView = new ShaderResourceView(device, texture);
 ```
 
+## Build with MSBuild
+
+```
+> msbuild SharpDXTex.sln /p:Configuration=Release /p:Platform=x64
+```
+
 ## License
 
 ```
