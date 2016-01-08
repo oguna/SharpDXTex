@@ -31,16 +31,5 @@ namespace SharpDXTex
 		FilterCubic = 0x300000,
 		FilterFant = 0x400000,
 	};
-
-	[System::Flags]
-	public enum class FlipRotateFlags : System::UInt32
-	{
-		Rotate0 = 0x0,
-		Rotate90 = 0x1,
-		Rotate180 = 0x2,
-		Rotate270 = 0x3,
-		FlipHorizotal = 0x08,
-		FlipVertical = 0x10,
-	};
 }
 
