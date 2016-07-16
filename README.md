@@ -10,7 +10,7 @@ If you want to use taht functions, you can use this library alternatively.
 
 ## DirectXTex version
 
-tag : `feb2016`
+tag : `jun2016`
 
 ## Usage
 

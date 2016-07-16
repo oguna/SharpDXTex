@@ -209,6 +209,13 @@
             Interop type for a Plane (4 floats).
             </summary>
         </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawPlane.#ctor(SharpDX.Mathematics.Interop.RawVector3,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawPlane"/> struct.
+            </summary>
+            <param name="normal">The plane normal.</param>
+            <param name="d">The plance distance.</param>
+        </member>
         <member name="F:SharpDX.Mathematics.Interop.RawPlane.Normal">
             <summary>
             The normal vector of the plane.
@@ -296,6 +303,14 @@
             <summary>
             Interop type for a Color3 (RGB, 3 floats).
             </summary>
+        </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawColor3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawColor3"/> struct.
+            </summary>
+            <param name="r">The r.</param>
+            <param name="g">The g.</param>
+            <param name="b">The b.</param>
         </member>
         <member name="F:SharpDX.Mathematics.Interop.RawColor3.R">
             <summary>
@@ -385,6 +400,14 @@
             Interop type for a Int3 (3 ints).
             </summary>
         </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawInt3.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawInt3"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+            <param name="z">The z.</param>
+        </member>
         <member name="F:SharpDX.Mathematics.Interop.RawInt3.X">
             <summary>
             The X component of the vector.
@@ -404,6 +427,15 @@
             <summary>
             Interop type for a Int4 (4 ints).
             </summary>
+        </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawInt4.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawInt4"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+            <param name="z">The z.</param>
+            <param name="w">The w.</param>
         </member>
         <member name="F:SharpDX.Mathematics.Interop.RawInt4.X">
             <summary>
@@ -515,6 +547,17 @@
             Interop type for a float3x2 (6 floats).
             </summary>
         </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawMatrix3x2.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawMatrix3x2"/> struct.
+            </summary>
+            <param name="m11">The m11 value.</param>
+            <param name="m12">The m12 value.</param>
+            <param name="m21">The m21 value.</param>
+            <param name="m22">The m22 value.</param>
+            <param name="m31">The m31 value.</param>
+            <param name="m32">The m32 value.</param>
+        </member>
         <member name="F:SharpDX.Mathematics.Interop.RawMatrix3x2.M11">
             <summary>
             Element (1,1)
@@ -549,6 +592,15 @@
             <summary>
             Interop type for a Quaternion (4 floats).
             </summary>
+        </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawQuaternion.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawQuaternion"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+            <param name="z">The z.</param>
+            <param name="w">The w.</param>
         </member>
         <member name="F:SharpDX.Mathematics.Interop.RawQuaternion.X">
             <summary>
@@ -609,6 +661,13 @@
             Interop type for a Point (2 ints).
             </summary>
         </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawPoint.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawPoint"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+        </member>
         <member name="F:SharpDX.Mathematics.Interop.RawPoint.X">
             <summary>
             Left coordinate.
@@ -655,6 +714,13 @@
             Interop type for a float2 (2 floats).
             </summary>
         </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawVector2.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawVector2"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+        </member>
         <member name="F:SharpDX.Mathematics.Interop.RawVector2.X">
             <summary>
             The X component of the vector.
@@ -669,6 +735,14 @@
             <summary>
             Interop type for a float3 (3 floats).
             </summary>
+        </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawVector3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawVector3"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+            <param name="z">The z.</param>
         </member>
         <member name="F:SharpDX.Mathematics.Interop.RawVector3.X">
             <summary>
@@ -689,6 +763,15 @@
             <summary>
             Interop type for a float4 (4 floats).
             </summary>
+        </member>
+        <member name="M:SharpDX.Mathematics.Interop.RawVector4.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpDX.Mathematics.Interop.RawVector4"/> struct.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The y.</param>
+            <param name="z">The z.</param>
+            <param name="w">The w.</param>
         </member>
         <member name="F:SharpDX.Mathematics.Interop.RawVector4.X">
             <summary>
@@ -2175,6 +2258,16 @@
         <member name="E:SharpDX.Diagnostics.ObjectTracker.UnTracked">
             <summary>
             Occurs when a ComObject is untracked.
+            </summary>
+        </member>
+        <member name="F:SharpDX.Diagnostics.ObjectTracker.StackTraceProvider">
+            <summary>
+            Function which provides stack trace for object tracking.
+            </summary>
+        </member>
+        <member name="M:SharpDX.Diagnostics.ObjectTracker.GetStackTrace">
+            <summary>
+            Gets default stack trace.
             </summary>
         </member>
         <member name="M:SharpDX.Diagnostics.ObjectTracker.Track(SharpDX.ComObject)">

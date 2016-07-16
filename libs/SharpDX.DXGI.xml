@@ -196,9 +196,16 @@
         </member>
         <member name="T:SharpDX.DXGI.Factory4">
             <summary>	
-            No documentation for Direct3D12	
+            <p> An <strong><see cref="T:SharpDX.DXGI.Factory" /></strong> interface implements methods for generating DXGI objects (which handle full screen transitions). </p>	
             </summary>	
+            <remarks>	
+            <p> Create a factory by calling <strong>CreateDXGIFactory</strong>. </p><p> Because you can create a Direct3D device without creating a swap chain, you might need to retrieve the factory that is used to create the device in order to create a swap chain. You can request the <strong><see cref="T:SharpDX.DXGI.Device" /></strong> interface from the Direct3D device and then use the <strong><see cref="M:SharpDX.DXGI.DXGIObject.GetParent(System.Guid,System.IntPtr@)" /></strong> method to locate the factory.  The following code shows how. </p><pre><see cref="T:SharpDX.DXGI.Device" /> * pDXGIDevice = nullptr;	
+            hr = g_pd3dDevice-&gt;QueryInterface(__uuidof(<see cref="T:SharpDX.DXGI.Device" />), (void **)&amp;pDXGIDevice); <see cref="T:SharpDX.DXGI.Adapter" /> * pDXGIAdapter = nullptr;	
+            hr = pDXGIDevice-&gt;GetAdapter( &amp;pDXGIAdapter ); <see cref="T:SharpDX.DXGI.Factory" /> * pIDXGIFactory = nullptr;	
+            pDXGIAdapter-&gt;GetParent(__uuidof(<see cref="T:SharpDX.DXGI.Factory" />), (void **)&amp;pIDXGIFactory);</pre><p><strong>Windows?Phone?8: </strong> This API is supported. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIFactory4']/*" />	
+            <msdn-id>bb174535</msdn-id>	
             <unmanaged>IDXGIFactory4</unmanaged>	
             <unmanaged-short>IDXGIFactory4</unmanaged-short>	
         </member>
@@ -230,24 +237,32 @@
         </member>
         <member name="M:SharpDX.DXGI.Factory4.EnumAdapterByLuid(System.Int64,System.Guid,System.IntPtr@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p> Outputs the <strong><see cref="T:SharpDX.DXGI.Adapter" /></strong> for the specified <see cref="T:System.Int64" />. </p>	
             </summary>	
             <param name="adapterLuid">No documentation.</param>	
             <param name="riid">No documentation.</param>	
             <param name="vAdapterOut">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. See also Direct3D 12 Return Codes. </p></returns>	
+            <remarks>	
+            <p> For Direct3D 12, it's no longer possible to backtrack from a device to the <strong><see cref="T:SharpDX.DXGI.Adapter" /></strong> that was used to create it. <strong><see cref="M:SharpDX.DXGI.Factory4.EnumAdapterByLuid(System.Int64,System.Guid,System.IntPtr@)" /></strong> enables an app to retrieve information about the adapter where a D3D12 device was created. <strong><see cref="M:SharpDX.DXGI.Factory4.EnumAdapterByLuid(System.Int64,System.Guid,System.IntPtr@)" /></strong> is designed to be paired with <strong><see cref="!:SharpDX.Direct3D12.Device.GetAdapterLuid" /></strong>. For more information, see DXGI 1.4 Improvements. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIFactory4::EnumAdapterByLuid']/*" />	
+            <msdn-id>mt427786</msdn-id>	
             <unmanaged>HRESULT IDXGIFactory4::EnumAdapterByLuid([In] LUID AdapterLuid,[In] const GUID&amp; riid,[Out] void** ppvAdapter)</unmanaged>	
             <unmanaged-short>IDXGIFactory4::EnumAdapterByLuid</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Factory4.EnumWarpAdapter(System.Guid,System.IntPtr@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p> Provides an adapter which can be provided to <see cref="!:SharpDX.Direct3D12.D3D12.CreateDevice" /> to use the WARP renderer. </p>	
             </summary>	
-            <param name="riid">No documentation.</param>	
-            <param name="vAdapterOut">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="riid"><dd>  <p> The globally unique identifier (<see cref="T:System.Guid" />) of the <strong><see cref="T:SharpDX.DXGI.Factory4" /></strong> object referenced by the <em>ppvAdapter</em> parameter. </p> </dd></param>	
+            <param name="vAdapterOut"><dd>  <p> The address of an <strong><see cref="T:SharpDX.DXGI.Adapter" /></strong> interface reference to the adapter. This parameter must not be <c>null</c>. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. See also Direct3D 12 Return Codes. </p></returns>	
+            <remarks>	
+            <p> For more information, see DXGI 1.4 Improvements. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIFactory4::EnumWarpAdapter']/*" />	
+            <msdn-id>mt427787</msdn-id>	
             <unmanaged>HRESULT IDXGIFactory4::EnumWarpAdapter([In] const GUID&amp; riid,[Out] void** ppvAdapter)</unmanaged>	
             <unmanaged-short>IDXGIFactory4::EnumWarpAdapter</unmanaged-short>	
         </member>
@@ -1634,113 +1649,127 @@
         </member>
         <member name="T:SharpDX.DXGI.ColorSpaceType">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Specifies color space types.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_TYPE']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_TYPE</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_TYPE</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.RgbFullG22NoneP709">
             <summary>	
-            No documentation.	
+            <dd> <p>RGB full G22 and no P709.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.RgbFullG10NoneP709">
             <summary>	
-            No documentation.	
+            <dd> <p>RGB full G10 and no P709.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.RgbStudioG22NoneP709">
             <summary>	
-            No documentation.	
+            <dd> <p>RGB studio G22 and no P709.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P709']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P709</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P709</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.RgbStudioG22NoneP2020">
             <summary>	
-            No documentation.	
+            <dd> <p>RGB studio G22 and no P2020.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P2020']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P2020</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_RGB_STUDIO_G22_NONE_P2020</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.Reserved">
             <summary>	
-            No documentation.	
+            <dd> <p>Reserved.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_RESERVED']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_RESERVED</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_RESERVED</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrFullG22NoneP709X601">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR full G22 and no P709 or X601.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_FULL_G22_NONE_P709_X601']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_FULL_G22_NONE_P709_X601</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_FULL_G22_NONE_P709_X601</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrStudioG22LeftP601">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR studio G22 and left P601.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P601']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P601</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P601</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrFullG22LeftP601">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR full G22 and left P601.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P601']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P601</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P601</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrStudioG22LeftP709">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR studio G22 and left P709.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P709']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P709</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P709</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrFullG22LeftP709">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR full G22 and left P709.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P709']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P709</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P709</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrStudioG22LeftP2020">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR studio G22 and left P2020.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P2020']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P2020</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P2020</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.YcbcrFullG22LeftP2020">
             <summary>	
-            No documentation.	
+            <dd> <p>YCBCR full G22 and left P2020.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P2020']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P2020</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P2020</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.ColorSpaceType.Custom">
             <summary>	
-            No documentation.	
+            <dd> <p>Custom color space.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_COLOR_SPACE_CUSTOM']/*" />	
+            <msdn-id>dn903661</msdn-id>	
             <unmanaged>DXGI_COLOR_SPACE_CUSTOM</unmanaged>	
             <unmanaged-short>DXGI_COLOR_SPACE_CUSTOM</unmanaged-short>	
         </member>
@@ -3339,25 +3368,31 @@
         </member>
         <member name="T:SharpDX.DXGI.MemorySegmentGroup">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Specifies the memory segment group to use.</p>	
             </summary>	
+            <remarks>	
+            <p>This enum is used by <strong>QueryVideoMemoryInfo</strong> and <strong>SetVideoMemoryReservation</strong>.</p><p>Refer to the remarks for <strong><see cref="!:SharpDX.Direct3D12.MemoryPool" /></strong>.</p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_MEMORY_SEGMENT_GROUP']/*" />	
+            <msdn-id>dn933219</msdn-id>	
             <unmanaged>DXGI_MEMORY_SEGMENT_GROUP</unmanaged>	
             <unmanaged-short>DXGI_MEMORY_SEGMENT_GROUP</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.MemorySegmentGroup.Local">
             <summary>	
-            No documentation.	
+            <dd> <p> The grouping of segments which is considered local to the video adapter, and represents the fastest available memory to the GPU. Applications should target the local segment group as the target size for their working set.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_MEMORY_SEGMENT_GROUP_LOCAL']/*" />	
+            <msdn-id>dn933219</msdn-id>	
             <unmanaged>DXGI_MEMORY_SEGMENT_GROUP_LOCAL</unmanaged>	
             <unmanaged-short>DXGI_MEMORY_SEGMENT_GROUP_LOCAL</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.MemorySegmentGroup.NonLocal">
             <summary>	
-            No documentation.	
+            <dd> <p>The grouping of segments which is considered non-local to the video adapter, and may have slower performance than the local segment group.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL']/*" />	
+            <msdn-id>dn933219</msdn-id>	
             <unmanaged>DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL</unmanaged>	
             <unmanaged-short>DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL</unmanaged-short>	
         </member>
@@ -3482,17 +3517,19 @@
         </member>
         <member name="T:SharpDX.DXGI.OverlayColorSpaceSupportFlags">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Specifies support for overlay color space.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG']/*" />	
+            <msdn-id>dn903665</msdn-id>	
             <unmanaged>DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG</unmanaged>	
             <unmanaged-short>DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.OverlayColorSpaceSupportFlags.Present">
             <summary>	
-            No documentation.	
+            <dd> <p>Overlay color space support is present.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT']/*" />	
+            <msdn-id>dn903665</msdn-id>	
             <unmanaged>DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT</unmanaged>	
             <unmanaged-short>DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT</unmanaged-short>	
         </member>
@@ -3800,25 +3837,28 @@
         </member>
         <member name="T:SharpDX.DXGI.SwapChainColorSpaceSupportFlags">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Specifies color space support for the swap chain.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG']/*" />	
+            <msdn-id>dn903668</msdn-id>	
             <unmanaged>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG</unmanaged>	
             <unmanaged-short>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.SwapChainColorSpaceSupportFlags.Present">
             <summary>	
-            No documentation.	
+            <dd> <p>Color space support is present.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT']/*" />	
+            <msdn-id>dn903668</msdn-id>	
             <unmanaged>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT</unmanaged>	
             <unmanaged-short>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.SwapChainColorSpaceSupportFlags.OverlayPresent">
             <summary>	
-            No documentation.	
+            <dd> <p>Overlay color space support is present.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT']/*" />	
+            <msdn-id>dn903668</msdn-id>	
             <unmanaged>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT</unmanaged>	
             <unmanaged-short>DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT</unmanaged-short>	
         </member>
@@ -4406,9 +4446,13 @@
         </member>
         <member name="T:SharpDX.DXGI.Adapter3">
             <summary>	
-            No documentation for Direct3D12	
+            <p> The <strong><see cref="T:SharpDX.DXGI.Adapter" /></strong> interface represents a display subsystem (including one or more GPUs, DACs and video memory). </p>	
             </summary>	
+            <remarks>	
+            <p> A display subsystem is often referred to as a video card, however, on some machines the display subsystem is part of the motherboard. </p><p> To enumerate the display subsystems, use <strong><see cref="M:SharpDX.DXGI.Factory.GetAdapter(System.Int32)" /></strong>. </p><p> To get an interface to the adapter for a particular device, use <strong><see cref="M:SharpDX.DXGI.Device.GetAdapter(SharpDX.DXGI.Adapter@)" /></strong>. </p><p> To create a software adapter, use <strong><see cref="M:SharpDX.DXGI.Factory.CreateSoftwareAdapter(System.IntPtr)" /></strong>. </p><p><strong>Windows?Phone?8: </strong> This API is supported. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3']/*" />	
+            <msdn-id>bb174523</msdn-id>	
             <unmanaged>IDXGIAdapter3</unmanaged>	
             <unmanaged-short>IDXGIAdapter3</unmanaged-short>	
         </member>
@@ -4429,65 +4473,91 @@
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.RegisterHardwareContentProtectionTeardownStatusEvent(System.IntPtr,System.Int32@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Registers to receive notification of hardware content protection teardown events.</p>	
             </summary>	
-            <param name="hEvent">No documentation.</param>	
-            <param name="dwCookieRef">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="hEvent"><dd>  <p>A handle to the event object that the operating system sets when hardware content protection teardown occurs. The <strong>CreateEvent</strong> or <strong>OpenEvent</strong> function returns this handle. </p> </dd></param>	
+            <param name="dwCookieRef"><dd>  <p>A reference to a key value that an application can pass to the <strong><see cref="M:SharpDX.DXGI.Adapter3.UnregisterHardwareContentProtectionTeardownStatus(System.Int32)" /></strong> method to unregister the notification event that <em>hEvent</em> specifies.</p> </dd></param>	
+            <returns><p>If this method succeeds, it returns <strong><see cref="F:SharpDX.Result.Ok" /></strong>. Otherwise, it returns an <strong><see cref="T:SharpDX.Result" /></strong> error code.</p></returns>	
+            <remarks>	
+            <p>Call <strong><see cref="!:SharpDX.Direct3D11.VideoDevice.GetContentProtectionCaps" /></strong>() to check for the presence of the <strong><see cref="!:SharpDX.Direct3D11.ContentProtectionCaps.HardwareTeardown" /></strong> capability to know whether the hardware contains an automatic teardown mechanism. After the event is signaled, the application can call <strong><see cref="!:SharpDX.Direct3D11.VideoContext1.CheckCryptoSessionStatus" /></strong> to determine the impact of the hardware teardown for a specific <strong><see cref="!:SharpDX.Direct3D11.CryptoSession" /></strong> interface.	
+            </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::RegisterHardwareContentProtectionTeardownStatusEvent']/*" />	
+            <msdn-id>dn933230</msdn-id>	
             <unmanaged>HRESULT IDXGIAdapter3::RegisterHardwareContentProtectionTeardownStatusEvent([In] void* hEvent,[Out] unsigned int* pdwCookie)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::RegisterHardwareContentProtectionTeardownStatusEvent</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.UnregisterHardwareContentProtectionTeardownStatus(System.Int32)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Registers to receive notification of hardware content protection teardown events.</p>	
             </summary>	
-            <param name="dwCookie">No documentation.</param>	
+            <param name="dwCookie"><dd>  <p>A handle to the event object that the operating system sets when hardware content protection teardown occurs. The <strong>CreateEvent</strong> or <strong>OpenEvent</strong> function returns this handle. </p> </dd></param>	
+            <remarks>	
+            <p>Call <strong><see cref="!:SharpDX.Direct3D11.VideoDevice.GetContentProtectionCaps" /></strong>() to check for the presence of the <strong><see cref="!:SharpDX.Direct3D11.ContentProtectionCaps.HardwareTeardown" /></strong> capability to know whether the hardware contains an automatic teardown mechanism. After the event is signaled, the application can call <strong><see cref="!:SharpDX.Direct3D11.VideoContext1.CheckCryptoSessionStatus" /></strong> to determine the impact of the hardware teardown for a specific <strong><see cref="!:SharpDX.Direct3D11.CryptoSession" /></strong> interface.	
+            </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::UnregisterHardwareContentProtectionTeardownStatus']/*" />	
+            <msdn-id>dn933230</msdn-id>	
             <unmanaged>void IDXGIAdapter3::UnregisterHardwareContentProtectionTeardownStatus([In] unsigned int dwCookie)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::UnregisterHardwareContentProtectionTeardownStatus</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.QueryVideoMemoryInfo(System.Int32,SharpDX.DXGI.MemorySegmentGroup,SharpDX.DXGI.QueryVideoMemoryInformation@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p> This method informs the process of the current budget and process usage. </p>	
             </summary>	
-            <param name="nodeIndex">No documentation.</param>	
-            <param name="memorySegmentGroup">No documentation.</param>	
-            <param name="videoMemoryInfoRef">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="nodeIndex"><dd>  <p> Specifies the device's physical adapter for which the video memory information is queried. For single-GPU operation, set this to zero. If there are multiple GPU nodes, set this to the index of the node (the device's physical adapter) for which the video memory information is queried. See Multi-Adapter. </p> </dd></param>	
+            <param name="memorySegmentGroup"><dd>  <p> Specifies a <see cref="T:SharpDX.DXGI.MemorySegmentGroup" /> that identifies the group as local or non-local. </p> </dd></param>	
+            <param name="videoMemoryInfoRef"><dd>  <p> Fills in a <see cref="T:SharpDX.DXGI.QueryVideoMemoryInformation" /> structure with the current values. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. </p></returns>	
+            <remarks>	
+            <p> Applications must explicitly manage their usage of physical memory explicitly and keep usage within the budget assigned to the application process. Processes that cannot kept their usage within their assigned budgets will likely experience stuttering, as they are intermittently frozen and paged-out to allow other processes to run. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::QueryVideoMemoryInfo']/*" />	
+            <msdn-id>dn933223</msdn-id>	
             <unmanaged>HRESULT IDXGIAdapter3::QueryVideoMemoryInfo([In] unsigned int NodeIndex,[In] DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup,[Out] DXGI_QUERY_VIDEO_MEMORY_INFO* pVideoMemoryInfo)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::QueryVideoMemoryInfo</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.SetVideoMemoryReservation(System.Int32,SharpDX.DXGI.MemorySegmentGroup,System.Int64)">
             <summary>	
-            No documentation for Direct3D12	
+            <p> This method sends the minimum required physical memory for an application, to the OS. </p>	
             </summary>	
-            <param name="nodeIndex">No documentation.</param>	
-            <param name="memorySegmentGroup">No documentation.</param>	
-            <param name="reservation">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="nodeIndex"><dd>  <p> Specifies the device's physical adapter for which the video memory information is being set. For single-GPU operation, set this to zero. If there are multiple GPU nodes, set this to the index of the node (the device's physical adapter) for which the video memory information is being set. See Multi-Adapter. </p> </dd></param>	
+            <param name="memorySegmentGroup"><dd>  <p> Specifies a <see cref="T:SharpDX.DXGI.MemorySegmentGroup" /> that identifies the group as local or non-local. </p> </dd></param>	
+            <param name="reservation"><dd>  <p> Specifies a UINT64 that sets the minimum required physical memory, in bytes. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. </p></returns>	
+            <remarks>	
+            <p> Applications are encouraged to set a video reservation to denote the amount of physical memory they cannot go without. This value helps the OS quickly minimize the impact of large memory pressure situations. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::SetVideoMemoryReservation']/*" />	
+            <msdn-id>dn933232</msdn-id>	
             <unmanaged>HRESULT IDXGIAdapter3::SetVideoMemoryReservation([In] unsigned int NodeIndex,[In] DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup,[In] unsigned longlong Reservation)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::SetVideoMemoryReservation</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.RegisterVideoMemoryBudgetChangeNotificationEvent(System.IntPtr,System.Int32@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>This method establishes a correlation between a CPU synchronization object and the budget change event.</p>	
             </summary>	
-            <param name="hEvent">No documentation.</param>	
-            <param name="dwCookieRef">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="hEvent"><dd>  <p>Specifies a HANDLE for the event.</p> </dd></param>	
+            <param name="dwCookieRef"><dd>  <p>A key value for the window or event to unregister. The  <strong><see cref="M:SharpDX.DXGI.Adapter3.RegisterHardwareContentProtectionTeardownStatusEvent(System.IntPtr,System.Int32@)" /></strong> method returns this value. </p> </dd></param>	
+            <returns><p>This method returns an <see cref="T:SharpDX.Result" /> success or error code.</p></returns>	
+            <remarks>	
+            <p>Instead of calling <strong>QueryVideoMemoryInfo</strong> regularly, applications can use CPU synchronization objects to efficiently wake threads when budget changes occur. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::RegisterVideoMemoryBudgetChangeNotificationEvent']/*" />	
+            <msdn-id>dn933231</msdn-id>	
             <unmanaged>HRESULT IDXGIAdapter3::RegisterVideoMemoryBudgetChangeNotificationEvent([In] void* hEvent,[Out] unsigned int* pdwCookie)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::RegisterVideoMemoryBudgetChangeNotificationEvent</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.Adapter3.UnregisterVideoMemoryBudgetChangeNotification(System.Int32)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>This method stops notifying a CPU synchronization object whenever a budget change occurs. An application may switch back to polling the information regularly.</p>	
             </summary>	
-            <param name="dwCookie">No documentation.</param>	
+            <param name="dwCookie"><dd>  <p>A key value for the window or event to unregister. The  <strong><see cref="M:SharpDX.DXGI.Adapter3.RegisterHardwareContentProtectionTeardownStatusEvent(System.IntPtr,System.Int32@)" /></strong> method returns this value. </p> </dd></param>	
+            <remarks>	
+            <p>An application may switch back to polling for the information regularly.</p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIAdapter3::UnregisterVideoMemoryBudgetChangeNotification']/*" />	
+            <msdn-id>dn933234</msdn-id>	
             <unmanaged>void IDXGIAdapter3::UnregisterVideoMemoryBudgetChangeNotification([In] unsigned int dwCookie)</unmanaged>	
             <unmanaged-short>IDXGIAdapter3::UnregisterVideoMemoryBudgetChangeNotification</unmanaged-short>	
         </member>
@@ -5422,9 +5492,16 @@
         </member>
         <member name="T:SharpDX.DXGI.ISwapChainPanelNative2">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Provides interoperation between XAML and a DirectX swap chain.  Unlike <strong>SwapChainBackgroundPanel</strong>,  a <strong>SwapChainPanel</strong> can appear at any level in the XAML display tree,  and more than 1 can be present in any given tree.</p>	
             </summary>	
+            <remarks>	
+            <p>This interface provides the native implementation of the <strong>Windows::UI::XAML::Control::SwapChainPanel</strong> Windows Runtime type. To obtain a reference to <strong><see cref="T:SharpDX.DXGI.ISwapChainPanelNative" /></strong>,  you must cast a <strong>SwapChainPanel</strong> instance  to <strong>IInspectable</strong> or <strong><see cref="T:SharpDX.ComObject" /></strong>, and call <strong>QueryInterface</strong>.</p><pre> Microsoft::WRL::ComPtr&lt;<see cref="T:SharpDX.DXGI.ISwapChainPanelNative2" />&gt;	m_swapChainNative2;	
+            // ...	
+            IInspectable* panelInspectable = (IInspectable*) reinterpret_cast&lt;IInspectable*&gt;(swapChainPanel);	
+            panelInspectable-&gt;QueryInterface(__uuidof(<see cref="T:SharpDX.DXGI.ISwapChainPanelNative2" />), (void **)&amp;m_swapChainNative2); </pre>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='ISwapChainPanelNative2']/*" />	
+            <msdn-id>dn858172</msdn-id>	
             <unmanaged>ISwapChainPanelNative2</unmanaged>	
             <unmanaged-short>ISwapChainPanelNative2</unmanaged-short>	
         </member>
@@ -5445,20 +5522,68 @@
         </member>
         <member name="P:SharpDX.DXGI.ISwapChainPanelNative2.SwapChainHandle">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Sets the DirectX swap chain for <strong>SwapChainPanel</strong> using a handle to the swap chain.</p>	
             </summary>	
+            <remarks>	
+            <p>SetSwapChain(HANDLE swapChainHandle) allows a swap chain to be rendered by referencing a shared handle to the swap chain.   This enables scenarios where a swap chain is created in one process and needs to be passed to another process.</p><p>XAML supports setting a DXGI swap chain as the content of a SwapChainPanel element.  Apps accomplish this by querying for  the <strong><see cref="T:SharpDX.DXGI.ISwapChainPanelNative" /></strong> interface from a SwapChainPanel instance and calling <strong>SetSwapChain(<see cref="T:SharpDX.DXGI.SwapChain" /> *swapChain)</strong>.   </p><p>This process works for references to in process swap chains.  However, this doesn?t work for VoIP apps, which use a two-process model to enable continuing calls on a background process  when a foreground process is suspended or shut down.  This two-process implementation requires the ability to pass a shared handle to a swap chain, rather than a reference, created on the  background process to the foreground process to be rendered in a XAML SwapChainPanel in the foreground app.</p><pre> &lt;!-- XAML markup --&gt; 	
+            &lt;Page&gt;  &lt;SwapChainPanel x:Name=?captureStreamDisplayPanel? /&gt; 	
+            &lt;/Page&gt;  // Definitions 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.SwapChain1" />&gt; m_swapChain; 	
+            HANDLE m_swapChainHandle; 	
+            ComPtr&lt;<see cref="!:SharpDX.Direct3D11.Device" />&gt; m_d3dDevice; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Adapter" />&gt; dxgiAdapter; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Factory2" />&gt; dxgiFactory; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.FactoryMedia" />&gt; dxgiFactoryMedia; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Device" />&gt; dxgiDevice; 	
+            <see cref="T:SharpDX.DXGI.SwapChainDescription1" /> swapChainDesc = {0};  // Get DXGI factory (assume standard boilerplate has created D3D11Device) 	
+            m_d3dDevice.As(&amp;dxgiDevice); 	
+            dxgiDevice-&gt;GetAdapter(&amp;dxgiAdapter); 	
+            dxgiAdapter-&gt;GetParent(__uuidof(<see cref="T:SharpDX.DXGI.Factory2" />), &amp;dxgiFactory);  // Create swap chain and get handle 	
+            <see cref="!:SharpDX.DirectComposition.DComp.CreateSurfaceHandle" />(GENERIC_ALL, nullptr, &amp;m_swapChainHandle); 	
+            dxgiFactory.As(&amp;dxgiFactoryMedia); 	
+            dxgiFactoryMedia-&gt;CreateSwapChainForCompositionSurfaceHandle(  m_d3dDevice.Get(),  m_swapChainHandle,  &amp;swapChainDesc,  nullptr,  &amp;m_swapChain 	
+            );  // Set swap chain to display in a SwapChainPanel 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.ISwapChainPanelNative2" />&gt; panelNative; 	
+            reinterpret_cast&lt;<see cref="T:SharpDX.ComObject" />*&gt;(captureStreamDisplayPanel)-&gt;QueryInterface(IID_PPV_ARGS(&amp;panelNative))); 	
+            panelNative-&gt;SetSwapChainHandle(m_swapChainHandle);  </pre>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='ISwapChainPanelNative2::SetSwapChainHandle']/*" />	
+            <msdn-id>dn858173</msdn-id>	
             <unmanaged>SetSwapChainHandle</unmanaged>	
             <unmanaged-short>SetSwapChainHandle</unmanaged-short>	
             <unmanaged>HRESULT ISwapChainPanelNative2::SetSwapChainHandle([In] void* swapChainHandle)</unmanaged>
         </member>
         <member name="M:SharpDX.DXGI.ISwapChainPanelNative2.SetSwapChainHandle(System.IntPtr)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Sets the DirectX swap chain for <strong>SwapChainPanel</strong> using a handle to the swap chain.</p>	
             </summary>	
             <param name="swapChainHandle">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <returns><p>If this method succeeds, it returns <strong><see cref="F:SharpDX.Result.Ok" /></strong>. Otherwise, it returns an <strong><see cref="T:SharpDX.Result" /></strong> error code.</p></returns>	
+            <remarks>	
+            <p>SetSwapChain(HANDLE swapChainHandle) allows a swap chain to be rendered by referencing a shared handle to the swap chain.   This enables scenarios where a swap chain is created in one process and needs to be passed to another process.</p><p>XAML supports setting a DXGI swap chain as the content of a SwapChainPanel element.  Apps accomplish this by querying for  the <strong><see cref="T:SharpDX.DXGI.ISwapChainPanelNative" /></strong> interface from a SwapChainPanel instance and calling <strong>SetSwapChain(<see cref="T:SharpDX.DXGI.SwapChain" /> *swapChain)</strong>.   </p><p>This process works for references to in process swap chains.  However, this doesn?t work for VoIP apps, which use a two-process model to enable continuing calls on a background process  when a foreground process is suspended or shut down.  This two-process implementation requires the ability to pass a shared handle to a swap chain, rather than a reference, created on the  background process to the foreground process to be rendered in a XAML SwapChainPanel in the foreground app.</p><pre> &lt;!-- XAML markup --&gt; 	
+            &lt;Page&gt;  &lt;SwapChainPanel x:Name=?captureStreamDisplayPanel? /&gt; 	
+            &lt;/Page&gt;  // Definitions 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.SwapChain1" />&gt; m_swapChain; 	
+            HANDLE m_swapChainHandle; 	
+            ComPtr&lt;<see cref="!:SharpDX.Direct3D11.Device" />&gt; m_d3dDevice; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Adapter" />&gt; dxgiAdapter; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Factory2" />&gt; dxgiFactory; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.FactoryMedia" />&gt; dxgiFactoryMedia; 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.Device" />&gt; dxgiDevice; 	
+            <see cref="T:SharpDX.DXGI.SwapChainDescription1" /> swapChainDesc = {0};  // Get DXGI factory (assume standard boilerplate has created D3D11Device) 	
+            m_d3dDevice.As(&amp;dxgiDevice); 	
+            dxgiDevice-&gt;GetAdapter(&amp;dxgiAdapter); 	
+            dxgiAdapter-&gt;GetParent(__uuidof(<see cref="T:SharpDX.DXGI.Factory2" />), &amp;dxgiFactory);  // Create swap chain and get handle 	
+            <see cref="!:SharpDX.DirectComposition.DComp.CreateSurfaceHandle" />(GENERIC_ALL, nullptr, &amp;m_swapChainHandle); 	
+            dxgiFactory.As(&amp;dxgiFactoryMedia); 	
+            dxgiFactoryMedia-&gt;CreateSwapChainForCompositionSurfaceHandle(  m_d3dDevice.Get(),  m_swapChainHandle,  &amp;swapChainDesc,  nullptr,  &amp;m_swapChain 	
+            );  // Set swap chain to display in a SwapChainPanel 	
+            ComPtr&lt;<see cref="T:SharpDX.DXGI.ISwapChainPanelNative2" />&gt; panelNative; 	
+            reinterpret_cast&lt;<see cref="T:SharpDX.ComObject" />*&gt;(captureStreamDisplayPanel)-&gt;QueryInterface(IID_PPV_ARGS(&amp;panelNative))); 	
+            panelNative-&gt;SetSwapChainHandle(m_swapChainHandle);  </pre>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='ISwapChainPanelNative2::SetSwapChainHandle']/*" />	
+            <msdn-id>dn858173</msdn-id>	
             <unmanaged>HRESULT ISwapChainPanelNative2::SetSwapChainHandle([In] void* swapChainHandle)</unmanaged>	
             <unmanaged-short>ISwapChainPanelNative2::SetSwapChainHandle</unmanaged-short>	
         </member>
@@ -5902,9 +6027,13 @@
         </member>
         <member name="T:SharpDX.DXGI.Output4">
             <summary>	
-            No documentation for Direct3D12	
+            <p>An <strong><see cref="T:SharpDX.DXGI.Output" /></strong> interface represents an adapter output (such as a monitor).</p>	
             </summary>	
+            <remarks>	
+            <p>To see the outputs available, use <strong><see cref="M:SharpDX.DXGI.Adapter.GetOutput(System.Int32)" /></strong>. To see the specific output that the swap chain will update, use <strong><see cref="M:SharpDX.DXGI.SwapChain.GetContainingOutput(SharpDX.DXGI.Output@)" /></strong>.</p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIOutput4']/*" />	
+            <msdn-id>bb174546</msdn-id>	
             <unmanaged>IDXGIOutput4</unmanaged>	
             <unmanaged-short>IDXGIOutput4</unmanaged-short>	
         </member>
@@ -5925,14 +6054,15 @@
         </member>
         <member name="M:SharpDX.DXGI.Output4.CheckOverlayColorSpaceSupport(SharpDX.DXGI.Format,SharpDX.DXGI.ColorSpaceType,SharpDX.ComObject,System.Int32@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Checks for overlay color space support.</p>	
             </summary>	
-            <param name="format">No documentation.</param>	
-            <param name="colorSpace">No documentation.</param>	
-            <param name="concernedDeviceRef">No documentation.</param>	
-            <param name="flagsRef">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="format"><dd>  <p>A <strong><see cref="T:SharpDX.DXGI.Format" /></strong>-typed value for the color format.</p> </dd></param>	
+            <param name="colorSpace"><dd>  <p>A <strong><see cref="T:SharpDX.DXGI.ColorSpaceType" /></strong>-typed value that specifies color space type to check overlay support for.</p> </dd></param>	
+            <param name="concernedDeviceRef"><dd>  <p>A reference to the Direct3D device interface. <strong>CheckOverlayColorSpaceSupport</strong> returns only support info about this scan-out device. </p> </dd></param>	
+            <param name="flagsRef"><dd>  <p>A reference to a variable that receives a combination of <strong><see cref="T:SharpDX.DXGI.OverlayColorSpaceSupportFlags" /></strong>-typed values that are combined by using a bitwise OR operation. The resulting value specifies options for overlay color space support. </p> </dd></param>	
+            <returns><p>This method returns <strong><see cref="F:SharpDX.Result.Ok" /></strong> on success, or it returns one of the error codes that are described in the DXGI_ERROR topic.</p></returns>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGIOutput4::CheckOverlayColorSpaceSupport']/*" />	
+            <msdn-id>dn903672</msdn-id>	
             <unmanaged>HRESULT IDXGIOutput4::CheckOverlayColorSpaceSupport([In] DXGI_FORMAT Format,[In] DXGI_COLOR_SPACE_TYPE ColorSpace,[In] IUnknown* pConcernedDevice,[Out] unsigned int* pFlags)</unmanaged>	
             <unmanaged-short>IDXGIOutput4::CheckOverlayColorSpaceSupport</unmanaged-short>	
         </member>
@@ -7129,9 +7259,14 @@
         </member>
         <member name="T:SharpDX.DXGI.SwapChain3">
             <summary>	
-            No documentation for Direct3D12	
+            <p>An <strong><see cref="T:SharpDX.DXGI.SwapChain" /></strong> interface implements one or more <strong>surfaces</strong> for storing rendered data before presenting it to an output.</p>	
             </summary>	
+            <remarks>	
+            <p>You can create a swap chain by 	
+            calling <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForHwnd(SharpDX.ComObject,System.IntPtr,SharpDX.DXGI.SwapChainDescription1@,System.Nullable{SharpDX.DXGI.SwapChainFullScreenDescription},SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong>, <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForCoreWindow(SharpDX.ComObject,SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong>, or <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong>. You can also create a swap chain when you call <strong>D3D11CreateDeviceAndSwapChain</strong>; however, you can then only access the sub-set of swap-chain functionality that the <strong><see cref="T:SharpDX.DXGI.SwapChain" /></strong> interface provides.</p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3']/*" />	
+            <msdn-id>bb174569</msdn-id>	
             <unmanaged>IDXGISwapChain3</unmanaged>	
             <unmanaged-short>IDXGISwapChain3</unmanaged-short>	
         </member>
@@ -7152,97 +7287,114 @@
         </member>
         <member name="P:SharpDX.DXGI.SwapChain3.CurrentBackBufferIndex">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Gets the index of the swap chain's current back buffer.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::GetCurrentBackBufferIndex']/*" />	
+            <msdn-id>dn903675</msdn-id>	
             <unmanaged>GetCurrentBackBufferIndex</unmanaged>	
             <unmanaged-short>GetCurrentBackBufferIndex</unmanaged-short>	
             <unmanaged>unsigned int IDXGISwapChain3::GetCurrentBackBufferIndex()</unmanaged>
         </member>
         <member name="P:SharpDX.DXGI.SwapChain3.ColorSpace1">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Sets the color space used by the swap chain.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::SetColorSpace1']/*" />	
+            <msdn-id>dn903676</msdn-id>	
             <unmanaged>SetColorSpace1</unmanaged>	
             <unmanaged-short>SetColorSpace1</unmanaged-short>	
             <unmanaged>HRESULT IDXGISwapChain3::SetColorSpace1([In] DXGI_COLOR_SPACE_TYPE ColorSpace)</unmanaged>
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.GetCurrentBackBufferIndex">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Gets the index of the swap chain's current back buffer.</p>	
             </summary>	
-            <returns>No documentation.</returns>	
+            <returns><p>Returns the index of the current back buffer.</p></returns>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::GetCurrentBackBufferIndex']/*" />	
+            <msdn-id>dn903675</msdn-id>	
             <unmanaged>unsigned int IDXGISwapChain3::GetCurrentBackBufferIndex()</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::GetCurrentBackBufferIndex</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.CheckColorSpaceSupport(SharpDX.DXGI.ColorSpaceType,System.Int32@)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Checks the swap chain's support for color space.</p>	
             </summary>	
-            <param name="colorSpace">No documentation.</param>	
-            <param name="colorSpaceSupportRef">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="colorSpace"><dd>  <p>A <strong><see cref="T:SharpDX.DXGI.ColorSpaceType" /></strong>-typed value that specifies color space type to check support for.</p> </dd></param>	
+            <param name="colorSpaceSupportRef"><dd>  <p>A reference to a variable that receives a combination of <strong><see cref="T:SharpDX.DXGI.SwapChainColorSpaceSupportFlags" /></strong>-typed values that are combined by using a bitwise OR operation. The resulting value specifies options for color space support. </p> </dd></param>	
+            <returns><p>This method returns <strong><see cref="F:SharpDX.Result.Ok" /></strong> on success, or it returns one of the error codes that are described in the DXGI_ERROR topic.</p></returns>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::CheckColorSpaceSupport']/*" />	
+            <msdn-id>dn903674</msdn-id>	
             <unmanaged>HRESULT IDXGISwapChain3::CheckColorSpaceSupport([In] DXGI_COLOR_SPACE_TYPE ColorSpace,[Out] unsigned int* pColorSpaceSupport)</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::CheckColorSpaceSupport</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.SetColorSpace1(SharpDX.DXGI.ColorSpaceType)">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Sets the color space used by the swap chain.</p>	
             </summary>	
-            <param name="colorSpace">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="colorSpace"><dd>  <p>A <strong><see cref="T:SharpDX.DXGI.ColorSpaceType" /></strong>-typed value that specifies the color space to set.</p> </dd></param>	
+            <returns><p>This method returns <strong><see cref="F:SharpDX.Result.Ok" /></strong> on success, or it returns one of the error codes that are described in the DXGI_ERROR topic.</p></returns>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::SetColorSpace1']/*" />	
+            <msdn-id>dn903676</msdn-id>	
             <unmanaged>HRESULT IDXGISwapChain3::SetColorSpace1([In] DXGI_COLOR_SPACE_TYPE ColorSpace)</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::SetColorSpace1</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.ResizeBuffers1(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,System.Int32,System.Int32[],SharpDX.ComObject[])">
             <summary>	
-            No documentation for Direct3D12	
+            <p> Changes the swap chain's back buffer size, format, and number of buffers, where the swap chain was created using a D3D12 command queue as an input device. This should be called when the application window is resized. </p>	
             </summary>	
-            <param name="bufferCount">No documentation.</param>	
-            <param name="width">No documentation.</param>	
-            <param name="height">No documentation.</param>	
-            <param name="format">No documentation.</param>	
-            <param name="swapChainFlags">No documentation.</param>	
-            <param name="creationNodeMaskRef">No documentation.</param>	
-            <param name="presentQueueOut">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="bufferCount"><dd>  <p> The number of buffers in the swap chain (including all back and front buffers). This number can be different from the number of buffers with which you created the swap chain. This number can't be greater than <strong>DXGI_MAX_SWAP_CHAIN_BUFFERS</strong>. Set this number to zero to preserve the existing number of buffers in the swap chain. You can't specify less than two buffers for the flip presentation model. </p> </dd></param>	
+            <param name="width"><dd>  <p> The new width of the back buffer.  If you specify zero, DXGI will use the width of the client area of the target window.  You can't specify the width as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="height"><dd>  <p> The new height of the back buffer.  If you specify zero, DXGI will use the height of the client area of the target window.  You can't specify the height as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="format"><dd>  <p> A <strong><see cref="T:SharpDX.DXGI.Format" /></strong>-typed value for the new format of the back buffer.  Set this value to <strong><see cref="F:SharpDX.DXGI.Format.Unknown" /></strong> to preserve the existing format of the back buffer.  The flip presentation model supports a more restricted set of formats than the bit-block transfer (bitblt) model. </p> </dd></param>	
+            <param name="swapChainFlags"><dd>  <p> A combination of <strong><see cref="T:SharpDX.DXGI.SwapChainFlags" /></strong>-typed values that are combined by using a bitwise OR operation. The resulting value specifies options for swap-chain behavior. </p> </dd></param>	
+            <param name="creationNodeMaskRef"><dd>  <p> An array of UINTs, of total size <em>BufferCount</em>, where the value indicates which node the back buffer should be created on. Buffers created using <strong>ResizeBuffers1</strong> with a non-null <em>pCreationNodeMask</em> array are visible to all nodes. </p> </dd></param>	
+            <param name="presentQueueOut"><dd>  <p> An array of command queues (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong> instances), of total size <em>BufferCount</em>. Each queue provided must match the corresponding creation node mask specified in the <em>pCreationNodeMask</em> array. When <strong>Present()</strong> is called, in addition to rotating to the next buffer for the next frame, the swapchain will also rotate through these command queues. This allows the app to control which queue requires synchronization for a given present operation. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. </p></returns>	
+            <remarks>	
+            <p> This method is only valid to call when the swapchain was created using a D3D12 command queue (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong>) as an input device. </p><p> When a swapchain is created on a multi-GPU adapter, the backbuffers are all created on node 1 and only a single command queue is supported. <strong>ResizeBuffers1</strong> enables applications to create backbuffers on different nodes, allowing a different command queue to be used with each node. These capabilities enable Alternate Frame Rendering (AFR) techniques to be used with the swapchain. See Direct3D 12 Multi-Adapters. </p><p> The only difference between <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong> in Windows?8 versus Windows?7 is with flip presentation model swap chains that you create with the <strong><see cref="F:SharpDX.DXGI.SwapEffect.FlipSequential" /></strong> or <see cref="F:SharpDX.DXGI.SwapEffect.FlipDiscard" /> value set. In Windows?8, you must call <strong>ResizeBuffers</strong> to realize a transition between full-screen mode and windowed mode; otherwise, your next call to the <strong><see cref="M:SharpDX.DXGI.SwapChain.Present(System.Int32,SharpDX.DXGI.PresentFlags)" /></strong> method fails. </p><p> Also see the Remarks section in <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong>, all of which is relevant to <strong>ResizeBuffers1</strong>. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::ResizeBuffers1']/*" />	
+            <msdn-id>mt403341</msdn-id>	
             <unmanaged>HRESULT IDXGISwapChain3::ResizeBuffers1([In] unsigned int BufferCount,[In] unsigned int Width,[In] unsigned int Height,[In] DXGI_FORMAT Format,[In] unsigned int SwapChainFlags,[In, Buffer] const unsigned int* pCreationNodeMask,[In, Buffer] const IUnknown** ppPresentQueue)</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::ResizeBuffers1</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.ResizeBuffers1(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,System.Int32,System.Int32[],SharpDX.ComArray{SharpDX.ComObject})">
             <summary>	
-            No documentation for Direct3D12	
+            <p> Changes the swap chain's back buffer size, format, and number of buffers, where the swap chain was created using a D3D12 command queue as an input device. This should be called when the application window is resized. </p>	
             </summary>	
-            <param name="bufferCount">No documentation.</param>	
-            <param name="width">No documentation.</param>	
-            <param name="height">No documentation.</param>	
-            <param name="format">No documentation.</param>	
-            <param name="swapChainFlags">No documentation.</param>	
-            <param name="creationNodeMaskRef">No documentation.</param>	
-            <param name="presentQueueOut">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="bufferCount"><dd>  <p> The number of buffers in the swap chain (including all back and front buffers). This number can be different from the number of buffers with which you created the swap chain. This number can't be greater than <strong>DXGI_MAX_SWAP_CHAIN_BUFFERS</strong>. Set this number to zero to preserve the existing number of buffers in the swap chain. You can't specify less than two buffers for the flip presentation model. </p> </dd></param>	
+            <param name="width"><dd>  <p> The new width of the back buffer.  If you specify zero, DXGI will use the width of the client area of the target window.  You can't specify the width as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="height"><dd>  <p> The new height of the back buffer.  If you specify zero, DXGI will use the height of the client area of the target window.  You can't specify the height as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="format"><dd>  <p> A <strong><see cref="T:SharpDX.DXGI.Format" /></strong>-typed value for the new format of the back buffer.  Set this value to <strong><see cref="F:SharpDX.DXGI.Format.Unknown" /></strong> to preserve the existing format of the back buffer.  The flip presentation model supports a more restricted set of formats than the bit-block transfer (bitblt) model. </p> </dd></param>	
+            <param name="swapChainFlags"><dd>  <p> A combination of <strong><see cref="T:SharpDX.DXGI.SwapChainFlags" /></strong>-typed values that are combined by using a bitwise OR operation. The resulting value specifies options for swap-chain behavior. </p> </dd></param>	
+            <param name="creationNodeMaskRef"><dd>  <p> An array of UINTs, of total size <em>BufferCount</em>, where the value indicates which node the back buffer should be created on. Buffers created using <strong>ResizeBuffers1</strong> with a non-null <em>pCreationNodeMask</em> array are visible to all nodes. </p> </dd></param>	
+            <param name="presentQueueOut"><dd>  <p> An array of command queues (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong> instances), of total size <em>BufferCount</em>. Each queue provided must match the corresponding creation node mask specified in the <em>pCreationNodeMask</em> array. When <strong>Present()</strong> is called, in addition to rotating to the next buffer for the next frame, the swapchain will also rotate through these command queues. This allows the app to control which queue requires synchronization for a given present operation. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. </p></returns>	
+            <remarks>	
+            <p> This method is only valid to call when the swapchain was created using a D3D12 command queue (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong>) as an input device. </p><p> When a swapchain is created on a multi-GPU adapter, the backbuffers are all created on node 1 and only a single command queue is supported. <strong>ResizeBuffers1</strong> enables applications to create backbuffers on different nodes, allowing a different command queue to be used with each node. These capabilities enable Alternate Frame Rendering (AFR) techniques to be used with the swapchain. See Direct3D 12 Multi-Adapters. </p><p> The only difference between <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong> in Windows?8 versus Windows?7 is with flip presentation model swap chains that you create with the <strong><see cref="F:SharpDX.DXGI.SwapEffect.FlipSequential" /></strong> or <see cref="F:SharpDX.DXGI.SwapEffect.FlipDiscard" /> value set. In Windows?8, you must call <strong>ResizeBuffers</strong> to realize a transition between full-screen mode and windowed mode; otherwise, your next call to the <strong><see cref="M:SharpDX.DXGI.SwapChain.Present(System.Int32,SharpDX.DXGI.PresentFlags)" /></strong> method fails. </p><p> Also see the Remarks section in <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong>, all of which is relevant to <strong>ResizeBuffers1</strong>. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::ResizeBuffers1']/*" />	
+            <msdn-id>mt403341</msdn-id>	
             <unmanaged>HRESULT IDXGISwapChain3::ResizeBuffers1([In] unsigned int BufferCount,[In] unsigned int Width,[In] unsigned int Height,[In] DXGI_FORMAT Format,[In] unsigned int SwapChainFlags,[In, Buffer] const unsigned int* pCreationNodeMask,[In, Buffer] const IUnknown** ppPresentQueue)</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::ResizeBuffers1</unmanaged-short>	
         </member>
         <member name="M:SharpDX.DXGI.SwapChain3.ResizeBuffers1(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,System.Int32,System.IntPtr,System.IntPtr)">
             <summary>	
-            No documentation for Direct3D12	
+            <p> Changes the swap chain's back buffer size, format, and number of buffers, where the swap chain was created using a D3D12 command queue as an input device. This should be called when the application window is resized. </p>	
             </summary>	
-            <param name="bufferCount">No documentation.</param>	
-            <param name="width">No documentation.</param>	
-            <param name="height">No documentation.</param>	
-            <param name="format">No documentation.</param>	
-            <param name="swapChainFlags">No documentation.</param>	
-            <param name="creationNodeMaskRef">No documentation.</param>	
-            <param name="presentQueueOut">No documentation.</param>	
-            <returns>No documentation.</returns>	
+            <param name="bufferCount"><dd>  <p> The number of buffers in the swap chain (including all back and front buffers). This number can be different from the number of buffers with which you created the swap chain. This number can't be greater than <strong>DXGI_MAX_SWAP_CHAIN_BUFFERS</strong>. Set this number to zero to preserve the existing number of buffers in the swap chain. You can't specify less than two buffers for the flip presentation model. </p> </dd></param>	
+            <param name="width"><dd>  <p> The new width of the back buffer.  If you specify zero, DXGI will use the width of the client area of the target window.  You can't specify the width as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="height"><dd>  <p> The new height of the back buffer.  If you specify zero, DXGI will use the height of the client area of the target window.  You can't specify the height as zero if you called the <strong><see cref="M:SharpDX.DXGI.Factory2.CreateSwapChainForComposition(SharpDX.ComObject,SharpDX.DXGI.SwapChainDescription1@,SharpDX.DXGI.Output,SharpDX.DXGI.SwapChain1)" /></strong> method to create the swap chain for a composition surface. </p> </dd></param>	
+            <param name="format"><dd>  <p> A <strong><see cref="T:SharpDX.DXGI.Format" /></strong>-typed value for the new format of the back buffer.  Set this value to <strong><see cref="F:SharpDX.DXGI.Format.Unknown" /></strong> to preserve the existing format of the back buffer.  The flip presentation model supports a more restricted set of formats than the bit-block transfer (bitblt) model. </p> </dd></param>	
+            <param name="swapChainFlags"><dd>  <p> A combination of <strong><see cref="T:SharpDX.DXGI.SwapChainFlags" /></strong>-typed values that are combined by using a bitwise OR operation. The resulting value specifies options for swap-chain behavior. </p> </dd></param>	
+            <param name="creationNodeMaskRef"><dd>  <p> An array of UINTs, of total size <em>BufferCount</em>, where the value indicates which node the back buffer should be created on. Buffers created using <strong>ResizeBuffers1</strong> with a non-null <em>pCreationNodeMask</em> array are visible to all nodes. </p> </dd></param>	
+            <param name="presentQueueOut"><dd>  <p> An array of command queues (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong> instances), of total size <em>BufferCount</em>. Each queue provided must match the corresponding creation node mask specified in the <em>pCreationNodeMask</em> array. When <strong>Present()</strong> is called, in addition to rotating to the next buffer for the next frame, the swapchain will also rotate through these command queues. This allows the app to control which queue requires synchronization for a given present operation. </p> </dd></param>	
+            <returns><p> Returns <see cref="F:SharpDX.Result.Ok" /> if successful; an error code otherwise. For a list of error codes, see DXGI_ERROR. </p></returns>	
+            <remarks>	
+            <p> This method is only valid to call when the swapchain was created using a D3D12 command queue (<strong><see cref="!:SharpDX.Direct3D12.CommandQueue" /></strong>) as an input device. </p><p> When a swapchain is created on a multi-GPU adapter, the backbuffers are all created on node 1 and only a single command queue is supported. <strong>ResizeBuffers1</strong> enables applications to create backbuffers on different nodes, allowing a different command queue to be used with each node. These capabilities enable Alternate Frame Rendering (AFR) techniques to be used with the swapchain. See Direct3D 12 Multi-Adapters. </p><p> The only difference between <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong> in Windows?8 versus Windows?7 is with flip presentation model swap chains that you create with the <strong><see cref="F:SharpDX.DXGI.SwapEffect.FlipSequential" /></strong> or <see cref="F:SharpDX.DXGI.SwapEffect.FlipDiscard" /> value set. In Windows?8, you must call <strong>ResizeBuffers</strong> to realize a transition between full-screen mode and windowed mode; otherwise, your next call to the <strong><see cref="M:SharpDX.DXGI.SwapChain.Present(System.Int32,SharpDX.DXGI.PresentFlags)" /></strong> method fails. </p><p> Also see the Remarks section in <strong><see cref="M:SharpDX.DXGI.SwapChain.ResizeBuffers(System.Int32,System.Int32,System.Int32,SharpDX.DXGI.Format,SharpDX.DXGI.SwapChainFlags)" /></strong>, all of which is relevant to <strong>ResizeBuffers1</strong>. </p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='IDXGISwapChain3::ResizeBuffers1']/*" />	
+            <msdn-id>mt403341</msdn-id>	
             <unmanaged>HRESULT IDXGISwapChain3::ResizeBuffers1([In] unsigned int BufferCount,[In] unsigned int Width,[In] unsigned int Height,[In] DXGI_FORMAT Format,[In] unsigned int SwapChainFlags,[In, Buffer] const unsigned int* pCreationNodeMask,[In, Buffer] const IUnknown** ppPresentQueue)</unmanaged>	
             <unmanaged-short>IDXGISwapChain3::ResizeBuffers1</unmanaged-short>	
         </member>
@@ -7892,65 +8044,73 @@
         </member>
         <member name="T:SharpDX.DXGI.JpegAcHuffmanTable">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Describes a JPEG AC huffman table.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_AC_HUFFMAN_TABLE']/*" />	
+            <msdn-id>dn903662</msdn-id>	
             <unmanaged>DXGI_JPEG_AC_HUFFMAN_TABLE</unmanaged>	
             <unmanaged-short>DXGI_JPEG_AC_HUFFMAN_TABLE</unmanaged-short>	
         </member>
         <member name="P:SharpDX.DXGI.JpegAcHuffmanTable.CodeCounts">
             <summary>	
-            No documentation.	
+            <dd> <p>The number of codes for each code length.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_AC_HUFFMAN_TABLE::CodeCounts']/*" />	
+            <msdn-id>dn903662</msdn-id>	
             <unmanaged>unsigned char CodeCounts[16]</unmanaged>	
             <unmanaged-short>unsigned char CodeCounts</unmanaged-short>	
         </member>
         <member name="P:SharpDX.DXGI.JpegAcHuffmanTable.CodeValues">
             <summary>	
-            No documentation.	
+            <dd> <p>The Huffman code values, in order of increasing code length.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_AC_HUFFMAN_TABLE::CodeValues']/*" />	
+            <msdn-id>dn903662</msdn-id>	
             <unmanaged>unsigned char CodeValues[162]</unmanaged>	
             <unmanaged-short>unsigned char CodeValues</unmanaged-short>	
         </member>
         <member name="T:SharpDX.DXGI.JpegDeviceContextHuffmanTable">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Describes a JPEG DC huffman table.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_DC_HUFFMAN_TABLE']/*" />	
+            <msdn-id>dn903663</msdn-id>	
             <unmanaged>DXGI_JPEG_DC_HUFFMAN_TABLE</unmanaged>	
             <unmanaged-short>DXGI_JPEG_DC_HUFFMAN_TABLE</unmanaged-short>	
         </member>
         <member name="P:SharpDX.DXGI.JpegDeviceContextHuffmanTable.CodeCounts">
             <summary>	
-            No documentation.	
+            <dd> <p>The number of codes for each code length.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_DC_HUFFMAN_TABLE::CodeCounts']/*" />	
+            <msdn-id>dn903663</msdn-id>	
             <unmanaged>unsigned char CodeCounts[12]</unmanaged>	
             <unmanaged-short>unsigned char CodeCounts</unmanaged-short>	
         </member>
         <member name="P:SharpDX.DXGI.JpegDeviceContextHuffmanTable.CodeValues">
             <summary>	
-            No documentation.	
+            <dd> <p>The Huffman code values, in order of increasing code length.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_DC_HUFFMAN_TABLE::CodeValues']/*" />	
+            <msdn-id>dn903663</msdn-id>	
             <unmanaged>unsigned char CodeValues[12]</unmanaged>	
             <unmanaged-short>unsigned char CodeValues</unmanaged-short>	
         </member>
         <member name="T:SharpDX.DXGI.JpegQuantizationTable">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Describes a JPEG quantization table.</p>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_QUANTIZATION_TABLE']/*" />	
+            <msdn-id>dn903664</msdn-id>	
             <unmanaged>DXGI_JPEG_QUANTIZATION_TABLE</unmanaged>	
             <unmanaged-short>DXGI_JPEG_QUANTIZATION_TABLE</unmanaged-short>	
         </member>
         <member name="P:SharpDX.DXGI.JpegQuantizationTable.Elements">
             <summary>	
-            No documentation.	
+            <dd> <p>An array of bytes containing the elements of the quantization table.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_JPEG_QUANTIZATION_TABLE::Elements']/*" />	
+            <msdn-id>dn903664</msdn-id>	
             <unmanaged>unsigned char Elements[64]</unmanaged>	
             <unmanaged-short>unsigned char Elements</unmanaged-short>	
         </member>
@@ -8508,41 +8668,49 @@
         </member>
         <member name="T:SharpDX.DXGI.QueryVideoMemoryInformation">
             <summary>	
-            No documentation for Direct3D12	
+            <p>Describes the current video memory budgeting parameters.</p>	
             </summary>	
+            <remarks>	
+            <p>Use this structure with <strong>QueryVideoMemoryInfo</strong>.</p><p>Refer to the remarks for <strong><see cref="!:SharpDX.Direct3D12.MemoryPool" /></strong>.</p>	
+            </remarks>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_QUERY_VIDEO_MEMORY_INFO']/*" />	
+            <msdn-id>dn933220</msdn-id>	
             <unmanaged>DXGI_QUERY_VIDEO_MEMORY_INFO</unmanaged>	
             <unmanaged-short>DXGI_QUERY_VIDEO_MEMORY_INFO</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.QueryVideoMemoryInformation.Budget">
             <summary>	
-            No documentation.	
+            <dd> <p>Specifies the OS-provided video memory budget, in bytes, that the application should target. If <em>CurrentUsage</em> is greater than <em>Budget</em>, the application may incur stuttering or performance penalties due to background activity by the OS to provide other applications with a fair usage of video memory.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_QUERY_VIDEO_MEMORY_INFO::Budget']/*" />	
+            <msdn-id>dn933220</msdn-id>	
             <unmanaged>unsigned longlong Budget</unmanaged>	
             <unmanaged-short>unsigned longlong Budget</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.QueryVideoMemoryInformation.CurrentUsage">
             <summary>	
-            No documentation.	
+            <dd> <p> Specifies the application?s current video memory usage, in bytes.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_QUERY_VIDEO_MEMORY_INFO::CurrentUsage']/*" />	
+            <msdn-id>dn933220</msdn-id>	
             <unmanaged>unsigned longlong CurrentUsage</unmanaged>	
             <unmanaged-short>unsigned longlong CurrentUsage</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.QueryVideoMemoryInformation.AvailableForReservation">
             <summary>	
-            No documentation.	
+            <dd> <p> The amount of video memory, in bytes, that the application has available for reservation. To reserve this video memory, the application should call <strong><see cref="M:SharpDX.DXGI.Adapter3.SetVideoMemoryReservation(System.Int32,SharpDX.DXGI.MemorySegmentGroup,System.Int64)" /></strong>.</p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_QUERY_VIDEO_MEMORY_INFO::AvailableForReservation']/*" />	
+            <msdn-id>dn933220</msdn-id>	
             <unmanaged>unsigned longlong AvailableForReservation</unmanaged>	
             <unmanaged-short>unsigned longlong AvailableForReservation</unmanaged-short>	
         </member>
         <member name="F:SharpDX.DXGI.QueryVideoMemoryInformation.CurrentReservation">
             <summary>	
-            No documentation.	
+            <dd> <p> The amount of video memory, in bytes, that is reserved by the application. The OS uses the reservation as a hint to determine the application?s minimum working set. Applications should attempt to ensure that their video memory usage can be trimmed to meet this requirement. </p> </dd>	
             </summary>	
             <!-- No matching elements were found for the following include tag --><include file=".\..\Documentation\CodeComments.xml" path="/comments/comment[@id='DXGI_QUERY_VIDEO_MEMORY_INFO::CurrentReservation']/*" />	
+            <msdn-id>dn933220</msdn-id>	
             <unmanaged>unsigned longlong CurrentReservation</unmanaged>	
             <unmanaged-short>unsigned longlong CurrentReservation</unmanaged-short>	
         </member>
