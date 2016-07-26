@@ -25,16 +25,6 @@ SharpDX::Direct3D11::Resource^ CreateTextureResource(ID3D11Resource* pResource) 
 	return nullptr;
 }
 
-bool SharpDXTex::TextureUtil::IsSuportedTexture(SharpDX::Direct3D11::Device^ device, TexMetadata metadata)
-{
-	if (device == nullptr) {
-		throw(gcnew System::ArgumentNullException("device"));
-	}
-	auto nativeMetadata = metadata.toNative();
-	auto nativeDevice = (ID3D11Device*)(void*)device->NativePointer;
-	return DirectX::IsSupportedTexture(nativeDevice, nativeMetadata);
-}
-
 SharpDX::Direct3D11::Resource^ SharpDXTex::TextureUtil::CreateTexture(SharpDX::Direct3D11::Device^ device, array<Image>^ srcImages, TexMetadata metadata)
 {
 	if (device == nullptr) {

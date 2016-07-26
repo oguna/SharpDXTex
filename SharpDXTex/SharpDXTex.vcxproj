@@ -156,7 +156,6 @@
     <ClInclude Include="ScratchImage.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="TexMetadata.h" />
-    <ClInclude Include="TextureUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -171,7 +170,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TextureUtil.cpp" />
     <ClCompile Include="TexMetadata.cpp" />
   </ItemGroup>
   <ItemGroup>

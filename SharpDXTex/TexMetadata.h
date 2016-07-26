@@ -55,6 +55,8 @@ namespace SharpDXTex {
 		bool IsPMAlpha();
 		void SetAlphaMode(AlphaMode mode);
 		bool IsVolumemap();
+
+		bool IsSuportedTexture(SharpDX::Direct3D11::Device^ device);
 		
 		static SharpDXTex::TexMetadata FromDDSMemory(array<byte>^ buffer, DDSFlags flags);
 		static SharpDXTex::TexMetadata FromDDSFile(System::String^ file, DDSFlags flags);

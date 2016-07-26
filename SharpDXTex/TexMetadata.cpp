@@ -145,3 +145,13 @@ SharpDXTex::TexMetadata SharpDXTex::TexMetadata::FromWICFile(System::String^ fil
 	}
 	return SharpDXTex::TexMetadata::TexMetadata(nativeMetadata);
 }
+
+bool SharpDXTex::TexMetadata::IsSuportedTexture(SharpDX::Direct3D11::Device^ device)
+{
+	if (device == nullptr) {
+		throw(gcnew System::ArgumentNullException("device"));
+	}
+	auto nativeMetadata = this->toNative();
+	auto nativeDevice = (ID3D11Device*)(void*)device->NativePointer;
+	return DirectX::IsSupportedTexture(nativeDevice, nativeMetadata);
+}
